@@ -1,30 +1,56 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>maxiung</title>
+  <title>Maxiung | ISE @ SJSU</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="academics.html">Academics</a>
-    <a href="learning.html">Self-learning</a>
-    <a href="projects.html">Projects</a>
+    <div class="nav-logo">MAXIUNG</div>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="academics.html">Academics</a>
+      <a href="learning.html">Learning</a>
+      <a href="projects.html">Projects</a>
+    </div>
   </nav>
 
   <main class="container">
-    <h1>Hi, I’m Xiaoxing (maxiung) </h1>
-    <p>I’m an engineering student building robotics + voice AI.</p>
+    <section class="hero">
+      <div class="badge">Class of 2029 • San Jose State University</div>
+      <h1>Hi, I’m <span class="highlight">Xiaoxing</span>.</h1>
+      <p class="subtitle">Industrial & Systems Engineering student at SJSU. <br>Bridging the gap between <strong>Robotics</strong> and <strong>Voice AI</strong>.</p>
+    </section>
 
-    <h2>Quick links</h2>
-    <ul>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="learning.html">Self-learning</a></li>
-      <li><a href="academics.html">Academics</a></li>
-    </ul>
+    <section class="grid">
+      <a href="projects.html" class="card tall">
+        <div class="card-content">
+          <span>01</span>
+          <h3>Projects</h3>
+          <p>Robotics & Voice AI Integration</p>
+        </div>
+      </a>
+      
+      <a href="academics.html" class="card">
+        <div class="card-content">
+          <span>02</span>
+          <h3>Academics</h3>
+          <p>ISE Core & System Design</p>
+        </div>
+      </a>
+
+      <a href="learning.html" class="card">
+        <div class="card-content">
+          <span>03</span>
+          <h3>Self-learning</h3>
+          <p>Tech Stack & Certifications</p>
+        </div>
+      </a>
+    </section>
   </main>
 </body>
 </html>
