@@ -5,52 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Maxiung | SJSU ISE</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&family=Space+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <header class="header">
-    <div class="site-id">MAXIUNG / SJSU-ISE-29</div>
-    <nav class="nav">
-      <a href="index.html" class="active">Index</a>
-      <a href="projects.html">Projects</a>
-      <a href="learning.html">Learning</a>
-      <a href="academics.html">Academics</a>
-    </nav>
+  <div class="grid-background"></div>
+
+  <header class="top-bar">
+    <div class="sys-status">SYS_READY // AUTH: MAXIUNG</div>
+    <div class="date-time">SJSU-ISE-2029</div>
   </header>
 
-  <main class="container">
-    <section class="intro">
-      <div class="label">[ INTRODUCTION ]</div>
-      <h1>XIAOXING <br> <span class="indent">MAXIUNG</span></h1>
-      <p class="role-desc">Engineering student focused on the intersection of <strong>Robotics</strong> and <strong>Voice AI</strong> systems. Developing efficient architectures for modern industrial applications.</p>
+  <nav class="side-nav">
+    <a href="index.html" class="active">HOME</a>
+    <a href="projects.html">PROJECTS</a>
+    <a href="learning.html">LEARNING</a>
+    <a href="academics.html">ACADEMIC</a>
+  </nav>
+
+  <main class="terminal">
+    <section class="hero-section">
+      <div class="terminal-header">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="title-tag">IDENTIFICATION_FILE</span>
+      </div>
+      <div class="hero-content">
+        <p class="label-mono">> SUBJECT NAME</p>
+        <h1 class="glitch-text">XIAOXING<br>MAXIUNG</h1>
+        <p class="bio">
+          <span class="highlight-line">ROBOTICS / VOICE AI ARCHITECT</span><br>
+          Building intelligent mechanical systems at San Jose State University.
+        </p>
+      </div>
     </section>
 
-    <section class="quick-nav">
-      <div class="label">[ NAVIGATION ]</div>
-      <div class="menu-list">
-        <a href="projects.html" class="menu-item">
-          <span class="num">01</span>
-          <span class="text">Selected Projects</span>
-          <span class="arrow">↗</span>
-        </a>
-        <a href="learning.html" class="menu-item">
-          <span class="num">02</span>
-          <span class="text">Self-Learning Log</span>
-          <span class="arrow">↗</span>
-        </a>
-        <a href="academics.html" class="menu-item">
-          <span class="num">03</span>
-          <span class="text">Academic Path</span>
-          <span class="arrow">↗</span>
-        </a>
-      </div>
+    <section class="action-grid">
+      <a href="projects.html" class="action-btn">
+        <span class="btn-num">01</span>
+        <span class="btn-txt">EXECUTE_PROJECTS</span>
+      </a>
+      <a href="learning.html" class="action-btn">
+        <span class="btn-num">02</span>
+        <span class="btn-txt">SELF_LEARNING_LOG</span>
+      </a>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="status">● Available for collaboration</div>
-    <div class="location">San Jose, CA</div>
+  <footer class="bottom-info">
+    <div class="location">LAT: 37.3382° N / LONG: 121.8863° W</div>
   </footer>
 </body>
 </html>
