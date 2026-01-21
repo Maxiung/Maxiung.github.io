@@ -4,55 +4,166 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Maxiung | SJSU ISE</title>
-  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #0a0a0a;
+      --panel-bg: #141414;
+      --accent-cyan: #00f2ff;
+      --text-dim: #888;
+      --border-color: #2a2a2a;
+      --grid-size: 30px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg-dark);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* 工业网格背景 */
+    .grid-background {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: 
+        linear-gradient(var(--border-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+      background-size: var(--grid-size) var(--grid-size);
+      z-index: -1;
+      opacity: 0.4;
+    }
+
+    /* 顶部导航 */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 40px;
+      border-bottom: 1px solid var(--border-color);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--accent-cyan);
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(5px);
+    }
+
+    /* 主内容区 */
+    .terminal {
+      max-width: 900px;
+      margin: 60px auto;
+      background: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .terminal-header {
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: #1a1a1a;
+    }
+
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: #333; }
+    .title-tag { margin-left: auto; font-family: 'Space Mono', monospace; font-size: 10px; color: #666; }
+
+    .hero-content { padding: 60px 40px; }
+    .label-mono { font-family: 'Space Mono', monospace; color: var(--accent-cyan); font-size: 12px; margin-bottom: 15px; }
+    
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 800;
+      line-height: 0.9;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+    }
+
+    .bio { font-size: 1.1rem; color: #bbb; max-width: 550px; line-height: 1.6; }
+    .highlight-line { border-bottom: 2px solid var(--accent-cyan); color: #fff; font-weight: 600; }
+
+    /* 底部按钮区 */
+    .action-grid {
+      display: flex;
+      border-top: 1px solid var(--border-color);
+      margin-top: auto;
+    }
+
+    .action-btn {
+      flex: 1;
+      padding: 30px;
+      text-decoration: none;
+      color: #fff;
+      border-right: 1px solid var(--border-color);
+      transition: all 0.3s;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .action-btn:last-child { border-right: none; }
+    .action-btn:hover { background: #1e1e1e; color: var(--accent-cyan); }
+    .btn-num { color: var(--accent-cyan); font-size: 11px; display: block; margin-bottom: 5px; }
+
+    footer {
+      padding: 20px 40px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: #444;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
 </head>
 
 <body>
   <div class="grid-background"></div>
 
   <header class="top-bar">
-    <div class="sys-status">SYS_READY // AUTH: MAXIUNG</div>
-    <div class="date-time">SJSU-ISE-2029</div>
+    <div>SYS_STATUS: ACTIVE</div>
+    <div>SJSU_ISE_CLASS_2029</div>
   </header>
 
-  <nav class="side-nav">
-    <a href="index.html" class="active">HOME</a>
-    <a href="projects.html">PROJECTS</a>
-    <a href="learning.html">LEARNING</a>
-    <a href="academics.html">ACADEMIC</a>
-  </nav>
-
   <main class="terminal">
-    <section class="hero-section">
-      <div class="terminal-header">
-        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        <span class="title-tag">IDENTIFICATION_FILE</span>
-      </div>
-      <div class="hero-content">
-        <p class="label-mono">> SUBJECT NAME</p>
-        <h1 class="glitch-text">XIAOXING<br>MAXIUNG</h1>
-        <p class="bio">
-          <span class="highlight-line">ROBOTICS / VOICE AI ARCHITECT</span><br>
-          Building intelligent mechanical systems at San Jose State University.
-        </p>
-      </div>
+    <div class="terminal-header">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="title-tag">IDENT_MAXIUNG_VOICE_AI_ROBOTICS</div>
+    </div>
+    
+    <section class="hero-content">
+      <p class="label-mono">> INITIALIZING...</p>
+      <h1>XIAOXING<br>MAXIUNG</h1>
+      <p class="bio">
+        Engineering student specializing in <span class="highlight-line">Robotics</span> and <span class="highlight-line">Voice AI</span>. 
+        Focusing on industrial efficiency and intelligent hardware systems.
+      </p>
     </section>
 
-    <section class="action-grid">
+    <nav class="action-grid">
       <a href="projects.html" class="action-btn">
-        <span class="btn-num">01</span>
-        <span class="btn-txt">EXECUTE_PROJECTS</span>
+        <span class="btn-num">01</span>EXECUTE_PROJECTS
       </a>
       <a href="learning.html" class="action-btn">
-        <span class="btn-num">02</span>
-        <span class="btn-txt">SELF_LEARNING_LOG</span>
+        <span class="btn-num">02</span>LEARNING_LOG
       </a>
-    </section>
+      <a href="academics.html" class="action-btn">
+        <span class="btn-num">03</span>ACADEMICS
+      </a>
+    </nav>
   </main>
 
-  <footer class="bottom-info">
-    <div class="location">LAT: 37.3382° N / LONG: 121.8863° W</div>
+  <footer>
+    <div>LOC: SAN JOSE, CA</div>
+    <div>© 2026 MAXIUNG // ALL RIGHTS RESERVED</div>
   </footer>
 </body>
 </html>
