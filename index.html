@@ -4,123 +4,168 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Maxiung | SJSU ISE</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-dark: #0a0a0a;
-      --panel-bg: #141414;
-      --accent-cyan: #00f2ff;
-      --text-dim: #888;
-      --border-color: #2a2a2a;
-      --grid-size: 30px;
+      --bg-color: #f4f4f7;        /* 工业白灰色背景 */
+      --panel-bg: #ffffff;        /* 纯白面板 */
+      --accent-blue: #7fb8d8;     /* 柔和的淡蓝色 */
+      --text-main: #2d2d2d;       /* 深灰文字 */
+      --text-sub: #8e8e93;        /* 浅灰辅助文字 */
+      --line-color: #d1d1d6;      /* 细分割线颜色 */
+      --grid-opacity: 0.5;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background-color: var(--bg-dark);
-      color: #fff;
+      background-color: var(--bg-color);
+      color: var(--text-main);
       font-family: 'Inter', sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       position: relative;
-      overflow-x: hidden;
     }
 
-    /* 工业网格背景 */
+    /* 工业感网格背景 */
     .grid-background {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       background-image: 
-        linear-gradient(var(--border-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
-      background-size: var(--grid-size) var(--grid-size);
+        linear-gradient(var(--line-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line-color) 1px, transparent 1px);
+      background-size: 40px 40px;
       z-index: -1;
-      opacity: 0.4;
+      opacity: var(--grid-opacity);
     }
 
-    /* 顶部导航 */
+    /* 顶部细线栏 */
     .top-bar {
       display: flex;
       justify-content: space-between;
-      padding: 20px 40px;
-      border-bottom: 1px solid var(--border-color);
+      padding: 15px 40px;
+      border-bottom: 1px solid var(--line-color);
       font-family: 'Space Mono', monospace;
       font-size: 11px;
-      color: var(--accent-cyan);
-      background: rgba(10, 10, 10, 0.8);
-      backdrop-filter: blur(5px);
+      letter-spacing: 1px;
+      color: var(--text-sub);
     }
 
-    /* 主内容区 */
+    /* 主容器 */
     .terminal {
-      max-width: 900px;
-      margin: 60px auto;
+      max-width: 800px;
+      margin: 40px auto;
       background: var(--panel-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
+      border: 1px solid var(--line-color);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      flex-grow: 0;
+      width: 90%;
     }
 
-    .terminal-header {
-      padding: 12px 20px;
-      border-bottom: 1px solid var(--border-color);
+    /* 头像与基本信息区 */
+    .profile-header {
+      padding: 40px;
       display: flex;
-      gap: 8px;
       align-items: center;
-      background: #1a1a1a;
+      gap: 30px;
+      border-bottom: 1px solid var(--line-color);
     }
 
-    .dot { width: 10px; height: 10px; border-radius: 50%; background: #333; }
-    .title-tag { margin-left: auto; font-family: 'Space Mono', monospace; font-size: 10px; color: #666; }
-
-    .hero-content { padding: 60px 40px; }
-    .label-mono { font-family: 'Space Mono', monospace; color: var(--accent-cyan); font-size: 12px; margin-bottom: 15px; }
-    
-    h1 {
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      font-weight: 800;
-      line-height: 0.9;
-      margin-bottom: 30px;
-      text-transform: uppercase;
-      letter-spacing: -2px;
+    .avatar {
+      width: 100px;
+      height: 100px;
+      background: #eee;
+      border: 1px solid var(--line-color);
+      border-radius: 2px; /* 工业感硬角微圆 */
+      overflow: hidden;
+      flex-shrink: 0;
     }
 
-    .bio { font-size: 1.1rem; color: #bbb; max-width: 550px; line-height: 1.6; }
-    .highlight-line { border-bottom: 2px solid var(--accent-cyan); color: #fff; font-weight: 600; }
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-    /* 底部按钮区 */
+    .info-text h1 {
+      font-size: 1.8rem; /* 缩小了名字 */
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      margin-bottom: 5px;
+    }
+
+    .info-text p {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: var(--accent-blue);
+      font-weight: bold;
+    }
+
+    /* 介绍内容 */
+    .hero-content {
+      padding: 40px;
+      background: #fafafa;
+    }
+
+    .bio {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--text-main);
+      max-width: 600px;
+    }
+
+    .highlight {
+      color: var(--accent-blue);
+      font-weight: 600;
+      border-bottom: 1px solid var(--accent-blue);
+    }
+
+    /* 导航按钮 */
     .action-grid {
       display: flex;
-      border-top: 1px solid var(--border-color);
-      margin-top: auto;
+      border-top: 1px solid var(--line-color);
     }
 
     .action-btn {
       flex: 1;
-      padding: 30px;
+      padding: 25px;
       text-decoration: none;
-      color: #fff;
-      border-right: 1px solid var(--border-color);
+      color: var(--text-main);
+      border-right: 1px solid var(--line-color);
       transition: all 0.3s;
       font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      text-align: center;
     }
 
     .action-btn:last-child { border-right: none; }
-    .action-btn:hover { background: #1e1e1e; color: var(--accent-cyan); }
-    .btn-num { color: var(--accent-cyan); font-size: 11px; display: block; margin-bottom: 5px; }
+    .action-btn:hover { 
+      background: var(--bg-color); 
+      color: var(--accent-blue); 
+    }
+
+    .btn-num { 
+      display: block; 
+      font-size: 10px; 
+      color: var(--text-sub); 
+      margin-bottom: 4px;
+    }
 
     footer {
-      padding: 20px 40px;
+      margin-top: auto;
+      padding: 30px;
+      text-align: center;
       font-family: 'Space Mono', monospace;
       font-size: 10px;
-      color: #444;
-      display: flex;
-      justify-content: space-between;
+      color: var(--text-sub);
+    }
+
+    @media (max-width: 600px) {
+      .profile-header { flex-direction: column; text-align: center; }
+      .action-grid { flex-direction: column; }
+      .action-btn { border-right: none; border-bottom: 1px solid var(--line-color); }
     }
   </style>
 </head>
@@ -129,31 +174,34 @@
   <div class="grid-background"></div>
 
   <header class="top-bar">
-    <div>SYS_STATUS: ACTIVE</div>
-    <div>SJSU_ISE_CLASS_2029</div>
+    <div>INDEX // 2029_GEN</div>
+    <div>SAN JOSE STATE UNIVERSITY</div>
   </header>
 
   <main class="terminal">
-    <div class="terminal-header">
-      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-      <div class="title-tag">IDENT_MAXIUNG_VOICE_AI_ROBOTICS</div>
-    </div>
+    <section class="profile-header">
+      <div class="avatar">
+        <img src="avatar.jpg" alt="Maxiung">
+      </div>
+      <div class="info-text">
+        <h1>Xiaoxing Maxiung</h1>
+        <p>INDUSTRIAL & SYSTEMS ENGINEERING</p>
+      </div>
+    </section>
     
     <section class="hero-content">
-      <p class="label-mono">> INITIALIZING...</p>
-      <h1>XIAOXING<br>MAXIUNG</h1>
       <p class="bio">
-        Engineering student specializing in <span class="highlight-line">Robotics</span> and <span class="highlight-line">Voice AI</span>. 
-        Focusing on industrial efficiency and intelligent hardware systems.
+        Engineering student building the future of <span class="highlight">Robotics</span> and <span class="highlight">Voice AI</span>. 
+        Focusing on system optimization and human-machine interaction.
       </p>
     </section>
 
     <nav class="action-grid">
       <a href="projects.html" class="action-btn">
-        <span class="btn-num">01</span>EXECUTE_PROJECTS
+        <span class="btn-num">01</span>PROJECTS
       </a>
       <a href="learning.html" class="action-btn">
-        <span class="btn-num">02</span>LEARNING_LOG
+        <span class="btn-num">02</span>LEARNING
       </a>
       <a href="academics.html" class="action-btn">
         <span class="btn-num">03</span>ACADEMICS
@@ -162,8 +210,7 @@
   </main>
 
   <footer>
-    <div>LOC: SAN JOSE, CA</div>
-    <div>© 2026 MAXIUNG // ALL RIGHTS RESERVED</div>
+    <div>37.3382° N, 121.8863° W // SILICON VALLEY</div>
   </footer>
 </body>
 </html>
