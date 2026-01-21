@@ -3,214 +3,191 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Maxiu | SJSU ISE</title>
+  <title>Maxiung | SJSU ISE</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-color: #f4f4f7;        /* 工业白灰色背景 */
-      --panel-bg: #ffffff;        /* 纯白面板 */
-      --accent-blue: #3782DE;     /* 柔和的淡蓝色 */
+      /* 配色方案：白灰底 + 淡蓝色点缀 */
+      --accent-blue: #a3c9e2;     /* 柔和淡蓝色 */
       --text-main: #2d2d2d;       /* 深灰文字 */
-      --text-sub: #8e8e93;        /* 浅灰辅助文字 */
-      --line-color: #d1d1d6;      /* 细分割线颜色 */
-      --grid-opacity: 0.5;
+      --text-sub: #666666;        /* 辅助文字 */
+      --glass-bg: rgba(255, 255, 255, 0.65); /* 磨砂玻璃背景色 */
+      --glass-border: rgba(255, 255, 255, 0.4);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background-color: var(--bg-color);
+      /* 这里上传你的背景图路径 */
+      background: url('your-background.jpg') no-repeat center center fixed; 
+      background-size: cover;
+      background-color: #f0f2f5; /* 图片没加载出来的底色 */
       color: var(--text-main);
       font-family: 'Inter', sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      position: relative;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* 工业感网格背景 */
-    .grid-background {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background-image: 
-        linear-gradient(var(--line-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--line-color) 1px, transparent 1px);
-      background-size: 40px 40px;
-      z-index: -1;
-      opacity: var(--grid-opacity);
+    /* 磨砂透明主面板 */
+    .glass-panel {
+      width: 90%;
+      max-width: 800px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px); /* 磨砂核心代码 */
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
     }
 
-    /* 顶部细线栏 */
-    .top-bar {
+    /* 顶部修饰条 */
+    .panel-header {
+      padding: 15px 30px;
+      border-bottom: 1px solid var(--glass-border);
       display: flex;
       justify-content: space-between;
-      padding: 15px 40px;
-      border-bottom: 1px solid var(--line-color);
       font-family: 'Space Mono', monospace;
       font-size: 11px;
-      letter-spacing: 1px;
       color: var(--text-sub);
+      text-transform: uppercase;
     }
 
-    /* 主容器 */
-    .terminal {
-      max-width: 800px;
-      margin: 40px auto;
-      background: var(--panel-bg);
-      border: 1px solid var(--line-color);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-      flex-grow: 0;
-      width: 90%;
-    }
-
-    /* 头像与基本信息区 */
-    .profile-header {
-      padding: 40px;
+    /* 个人信息区 */
+    .profile-section {
+      padding: 50px 40px;
       display: flex;
       align-items: center;
       gap: 30px;
-      border-bottom: 1px solid var(--line-color);
     }
 
     .avatar {
-      width: 100px;
-      height: 100px;
-      background: #eee;
-      border: 1px solid var(--line-color);
-      border-radius: 2px; /* 工业感硬角微圆 */
+      width: 90px;
+      height: 90px;
+      border-radius: 50%; /* 圆形头像 */
+      border: 2px solid white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       overflow: hidden;
-      flex-shrink: 0;
+      background: #eee;
     }
 
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
 
-    .info-text h1 {
-      font-size: 1.8rem; /* 缩小了名字 */
+    .name-info h1 {
+      font-size: 1.8rem;
       font-weight: 600;
-      letter-spacing: -0.5px;
-      margin-bottom: 5px;
+      margin-bottom: 4px;
+      color: var(--text-main);
     }
 
-    .info-text p {
+    .name-info p {
       font-family: 'Space Mono', monospace;
       font-size: 12px;
       color: var(--accent-blue);
-      font-weight: bold;
+      font-weight: 600;
     }
 
-    /* 介绍内容 */
-    .hero-content {
-      padding: 40px;
-      background: #fafafa;
+    /* 介绍文本 */
+    .bio-content {
+      padding: 0 40px 40px 40px;
     }
 
-    .bio {
+    .bio-text {
       font-size: 1.05rem;
       line-height: 1.6;
-      color: var(--text-main);
-      max-width: 600px;
+      color: var(--text-sub);
     }
 
     .highlight {
-      color: var(--accent-blue);
-      font-weight: 600;
-      border-bottom: 1px solid var(--accent-blue);
+      color: var(--text-main);
+      border-bottom: 2px solid var(--accent-blue);
+      font-weight: 500;
     }
 
-    /* 导航按钮 */
-    .action-grid {
+    /* 底部导航链接 */
+    .nav-grid {
       display: flex;
-      border-top: 1px solid var(--line-color);
+      border-top: 1px solid var(--glass-border);
     }
 
-    .action-btn {
+    .nav-item {
       flex: 1;
       padding: 25px;
+      text-align: center;
       text-decoration: none;
       color: var(--text-main);
-      border-right: 1px solid var(--line-color);
-      transition: all 0.3s;
       font-family: 'Space Mono', monospace;
       font-size: 13px;
-      text-align: center;
+      transition: background 0.3s;
+      border-right: 1px solid var(--glass-border);
     }
 
-    .action-btn:last-child { border-right: none; }
-    .action-btn:hover { 
-      background: var(--bg-color); 
-      color: var(--accent-blue); 
+    .nav-item:last-child { border-right: none; }
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.3);
+      color: var(--accent-blue);
     }
 
-    .btn-num { 
-      display: block; 
-      font-size: 10px; 
-      color: var(--text-sub); 
+    .nav-num {
+      display: block;
+      font-size: 10px;
+      color: var(--accent-blue);
       margin-bottom: 4px;
     }
 
     footer {
-      margin-top: auto;
-      padding: 30px;
-      text-align: center;
+      margin-top: 30px;
       font-family: 'Space Mono', monospace;
       font-size: 10px;
-      color: var(--text-sub);
-    }
-
-    @media (max-width: 600px) {
-      .profile-header { flex-direction: column; text-align: center; }
-      .action-grid { flex-direction: column; }
-      .action-btn { border-right: none; border-bottom: 1px solid var(--line-color); }
+      color: rgba(0, 0, 0, 0.4);
     }
   </style>
 </head>
 
 <body>
-  <div class="grid-background"></div>
+  <div class="glass-panel">
+    <div class="panel-header">
+      <span>SJSU // ISE 2029</span>
+      <span>System Status: Online</span>
+    </div>
 
-  <header class="top-bar">
-    <div>INDEX // 2029_GEN</div>
-    <div>SAN JOSE STATE UNIVERSITY</div>
-  </header>
-
-  <main class="terminal">
-    <section class="profile-header">
+    <section class="profile-section">
       <div class="avatar">
         <img src="avatar.jpg" alt="Maxiung">
       </div>
-      <div class="info-text">
+      <div class="name-info">
         <h1>Xiaoxing Maxiung</h1>
-        <p>INDUSTRIAL & SYSTEMS ENGINEERING</p>
+        <p>Robotics & Voice AI Engineer</p>
       </div>
     </section>
-    
-    <section class="hero-content">
-      <p class="bio">
-        Engineering student building the future of <span class="highlight">Robotics</span> and <span class="highlight">Voice AI</span>. 
-        Focusing on system optimization and human-machine interaction.
+
+    <section class="bio-content">
+      <p class="bio-text">
+        ISE student at SJSU. Building intelligent <span class="highlight">mechanical systems</span> 
+        and <span class="highlight">voice-controlled interfaces</span>. 
+        Focusing on industrial efficiency.
       </p>
     </section>
 
-    <nav class="action-grid">
-      <a href="projects.html" class="action-btn">
-        <span class="btn-num">01</span>PROJECTS
+    <nav class="nav-grid">
+      <a href="projects.html" class="nav-item">
+        <span class="nav-num">01</span>PROJECTS
       </a>
-      <a href="learning.html" class="action-btn">
-        <span class="btn-num">02</span>LEARNING
+      <a href="learning.html" class="nav-item">
+        <span class="nav-num">02</span>LEARNING
       </a>
-      <a href="academics.html" class="action-btn">
-        <span class="btn-num">03</span>ACADEMICS
+      <a href="academics.html" class="nav-item">
+        <span class="nav-num">03</span>ACADEMICS
       </a>
     </nav>
-  </main>
+  </div>
 
   <footer>
-    <div>37.3382° N, 121.8863° W // SILICON VALLEY</div>
+    37.3382° N, 121.8863° W // SILICON VALLEY
   </footer>
 </body>
 </html>
