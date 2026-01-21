@@ -1,131 +1,138 @@
 :root {
-  --bg: #ffffff;
-  --text: #000000;
-  --line: #e0e0e0; /* 极细的线 */
-  --mono-font: 'Space Mono', monospace;
-  --main-font: 'Space Grotesk', sans-serif;
+  --bg-dark: #0a0a0a;
+  --panel-bg: #141414;
+  --accent-cyan: #00f2ff; /* 很有科技感的青色 */
+  --text-dim: #888;
+  --border-color: #2a2a2a;
+  --grid-size: 30px;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: var(--main-font);
-  padding: 40px;
-  line-height: 1.2;
+  background-color: var(--bg-dark);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  height: 100vh;
 }
 
-/* --- 页眉与身份标识 --- */
-.header {
+/* --- 背景网格 (重点！) --- */
+.grid-background {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: 
+    linear-gradient(var(--border-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  z-index: -1;
+  opacity: 0.3;
+}
+
+/* --- 顶部栏 --- */
+.top-bar {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid var(--text);
-  padding-bottom: 15px;
-  font-family: var(--mono-font);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.nav a {
-  text-decoration: none;
-  color: var(--text);
-  margin-left: 25px;
-  opacity: 0.5;
-}
-
-.nav a.active, .nav a:hover {
-  opacity: 1;
-}
-
-/* --- 内容区 --- */
-.container {
-  margin-top: 80px;
-  max-width: 1200px;
-}
-
-.label {
-  font-family: var(--mono-font);
+  padding: 15px 30px;
+  border-bottom: 1px solid var(--border-color);
+  font-family: 'Space Mono', monospace;
   font-size: 11px;
-  margin-bottom: 30px;
-  letter-spacing: 0.05em;
+  color: var(--accent-cyan);
+  letter-spacing: 2px;
 }
 
-.intro h1 {
-  font-size: clamp(3rem, 10vw, 8rem);
-  line-height: 0.9;
-  font-weight: 600;
-  letter-spacing: -0.04em;
-  margin-bottom: 40px;
-}
-
-.indent {
-  margin-left: 10vw; /* 非对称错位 */
-}
-
-.role-desc {
-  font-size: 1.5rem;
-  max-width: 500px;
-  margin-left: 10vw;
-  margin-bottom: 100px;
-  font-weight: 300;
-}
-
-/* --- 列表式导航 --- */
-.menu-list {
-  border-top: 1px solid var(--line);
-}
-
-.menu-item {
+/* --- 侧边导航 (做成类似软件侧边栏) --- */
+.side-nav {
+  position: fixed;
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
-  align-items: center;
-  padding: 30px 0;
-  border-bottom: 1px solid var(--line);
+  flex-direction: column;
+  gap: 30px;
+}
+
+.side-nav a {
   text-decoration: none;
-  color: var(--text);
-  transition: padding-left 0.4s ease;
+  color: var(--text-dim);
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  transition: 0.3s;
 }
 
-.menu-item:hover {
-  padding-left: 20px;
-  background-color: #f9f9f9;
+.side-nav a:hover, .side-nav a.active {
+  color: var(--accent-cyan);
+  border-left: 1px solid var(--accent-cyan);
 }
 
-.num {
-  font-family: var(--mono-font);
-  font-size: 14px;
-  width: 100px;
+/* --- 主容器 (模拟终端窗口) --- */
+.terminal {
+  max-width: 900px;
+  margin: 100px auto;
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
 }
 
-.text {
-  font-size: 2rem;
-  font-weight: 400;
-  flex-grow: 1;
+.terminal-header {
+  padding: 12px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
-.arrow {
-  font-size: 1.5rem;
+.dot { width: 8px; height: 8px; border-radius: 50%; background: #333; }
+.title-tag { margin-left: auto; font-family: 'Space Mono', monospace; font-size: 10px; color: #555; }
+
+/* --- 文字内容 --- */
+.hero-content { padding: 60px; }
+
+.label-mono { font-family: 'Space Mono', monospace; color: var(--accent-cyan); font-size: 12px; margin-bottom: 10px; }
+
+.glitch-text {
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
 }
+
+.bio { font-size: 1.2rem; color: #ccc; max-width: 500px; }
+.highlight-line { border-bottom: 2px solid var(--accent-cyan); padding-bottom: 4px; color: #fff; display: inline-block; margin-bottom: 10px; }
+
+/* --- 交互按钮 --- */
+.action-grid {
+  display: flex;
+  border-top: 1px solid var(--border-color);
+}
+
+.action-btn {
+  flex: 1;
+  padding: 40px;
+  text-decoration: none;
+  color: #fff;
+  border-right: 1px solid var(--border-color);
+  transition: 0.3s;
+}
+
+.action-btn:hover {
+  background: #1e1e1e;
+}
+
+.btn-num { font-family: 'Space Mono', monospace; color: var(--accent-cyan); display: block; margin-bottom: 10px; }
+.btn-txt { font-weight: 700; letter-spacing: 1px; font-size: 14px; }
 
 /* --- 页脚 --- */
-.footer {
-  margin-top: 100px;
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--mono-font);
-  font-size: 11px;
-  text-transform: uppercase;
-}
-
-@media (max-width: 768px) {
-  body { padding: 20px; }
-  .intro h1 { font-size: 3rem; }
-  .indent { margin-left: 0; }
-  .role-desc { margin-left: 0; font-size: 1.2rem; }
-  .text { font-size: 1.5rem; }
+.bottom-info {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: #444;
 }
