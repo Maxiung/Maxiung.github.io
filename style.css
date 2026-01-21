@@ -1,147 +1,131 @@
 :root {
-  --bg-color: #fcfcfc;
-  --text-main: #1a1a1a;
-  --text-sub: #666;
-  --accent: #007AFF; /* 经典的工程蓝，也可以换成 SJSU 的金蓝色 */
-  --card-bg: #ffffff;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --bg: #ffffff;
+  --text: #000000;
+  --line: #e0e0e0; /* 极细的线 */
+  --mono-font: 'Space Mono', monospace;
+  --main-font: 'Space Grotesk', sans-serif;
 }
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Inter', -apple-system, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-main);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--main-font);
+  padding: 40px;
+  line-height: 1.2;
 }
 
-/* --- Navigation --- */
-.nav {
+/* --- 页眉与身份标识 --- */
+.header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 2rem 10%;
-  max-width: 1400px;
-  margin: 0 auto;
+  border-bottom: 1px solid var(--text);
+  padding-bottom: 15px;
+  font-family: var(--mono-font);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-.nav-logo {
-  font-weight: 600;
-  letter-spacing: 2px;
-  font-size: 0.9rem;
-}
-
-.nav-links a {
+.nav a {
   text-decoration: none;
-  color: var(--text-sub);
-  margin-left: 2rem;
-  font-size: 0.9rem;
-  transition: var(--transition);
+  color: var(--text);
+  margin-left: 25px;
+  opacity: 0.5;
 }
 
-.nav-links a:hover, .nav-links a.active {
-  color: var(--text-main);
+.nav a.active, .nav a:hover {
+  opacity: 1;
 }
 
-/* --- Hero Section --- */
+/* --- 内容区 --- */
 .container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
+  margin-top: 80px;
+  max-width: 1200px;
 }
 
-.badge {
-  display: inline-block;
-  padding: 0.4rem 1rem;
-  background: #eee;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  margin-bottom: 1.5rem;
+.label {
+  font-family: var(--mono-font);
+  font-size: 11px;
+  margin-bottom: 30px;
+  letter-spacing: 0.05em;
 }
 
-.hero h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+.intro h1 {
+  font-size: clamp(3rem, 10vw, 8rem);
+  line-height: 0.9;
   font-weight: 600;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
+  letter-spacing: -0.04em;
+  margin-bottom: 40px;
 }
 
-.highlight {
-  color: var(--accent);
+.indent {
+  margin-left: 10vw; /* 非对称错位 */
 }
 
-.subtitle {
-  font-size: 1.25rem;
-  color: var(--text-sub);
-  max-width: 600px;
-}
-
-/* --- Bento Grid --- */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 200px);
-  gap: 1.5rem;
-  margin-top: 4rem;
-}
-
-.card {
-  background: var(--card-bg);
-  border: 1px solid #e0e0e0;
-  border-radius: 24px;
-  padding: 2rem;
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  transition: var(--transition);
-  position: relative;
-  overflow: hidden;
-}
-
-.card.tall {
-  grid-row: span 2;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-
-.card span {
-  font-size: 0.8rem;
-  color: var(--text-sub);
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.card h3 {
+.role-desc {
   font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  max-width: 500px;
+  margin-left: 10vw;
+  margin-bottom: 100px;
+  font-weight: 300;
 }
 
-.card p {
-  font-size: 0.95rem;
-  color: var(--text-sub);
+/* --- 列表式导航 --- */
+.menu-list {
+  border-top: 1px solid var(--line);
 }
 
-/* Responsive */
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--text);
+  transition: padding-left 0.4s ease;
+}
+
+.menu-item:hover {
+  padding-left: 20px;
+  background-color: #f9f9f9;
+}
+
+.num {
+  font-family: var(--mono-font);
+  font-size: 14px;
+  width: 100px;
+}
+
+.text {
+  font-size: 2rem;
+  font-weight: 400;
+  flex-grow: 1;
+}
+
+.arrow {
+  font-size: 1.5rem;
+}
+
+/* --- 页脚 --- */
+.footer {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono-font);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
 @media (max-width: 768px) {
-  .grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-  }
-  .card.tall {
-    grid-row: auto;
-    height: 250px;
-  }
+  body { padding: 20px; }
+  .intro h1 { font-size: 3rem; }
+  .indent { margin-left: 0; }
+  .role-desc { margin-left: 0; font-size: 1.2rem; }
+  .text { font-size: 1.5rem; }
 }
