@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Winter Break Conclusion | Maxiung</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --accent-blue: #3782DE;
+      --text-main: #2d2d2d;
+      --text-sub: #666666;
+      --glass-bg: rgba(255, 255, 255, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.4);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: url('bg2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 850px;
+      width: 100%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      overflow: hidden;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    header {
+      padding: 40px;
+      border-bottom: 1px solid var(--glass-border);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .back-home {
+      text-decoration: none;
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: var(--accent-blue);
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    h1 { font-size: 2rem; font-weight: 600; margin-bottom: 10px; }
+    .subtitle { font-family: 'Space Mono', monospace; color: var(--text-sub); font-size: 13px; }
+
+    .content-section { padding: 40px; }
+
+    /* 技术标签样式 */
+    .tag-cloud { margin: 15px 0 30px 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      padding: 4px 12px;
+      background: rgba(55, 130, 222, 0.1);
+      border: 1px solid var(--accent-blue);
+      color: var(--accent-blue);
+      border-radius: 20px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+    }
+
+    h2 { 
+      font-size: 1.4rem; 
+      margin: 40px 0 20px 0; 
+      display: flex; 
+      align-items: center;
+      gap: 10px;
+    }
+    h2::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 24px;
+      background: var(--accent-blue);
+      border-radius: 2px;
+    }
+
+    p { margin-bottom: 20px; color: var(--text-sub); font-size: 1.05rem; }
+
+    .quote-box {
+      margin-top: 50px;
+      padding: 30px;
+      background: rgba(55, 130, 222, 0.05);
+      border-left: 4px solid var(--accent-blue);
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+    }
+
+    footer {
+      padding: 30px;
+      text-align: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--text-sub);
+      border-top: 1px solid var(--glass-border);
+    }
+
+    strong { color: var(--text-main); font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <a href="index.html" class="back-home">← BACK TO TERMINAL</a>
+      <h1>Winter Break 2024/25</h1>
+      <p class="subtitle">STATUS: COMPLETED // FOCUS: ITERATIVE ENGINEERING</p>
+    </header>
+
+    <div class="content-section">
+      <p><i>"This winter break felt different... it was the first time I truly built something from scratch — messy, frustrating, and sometimes chaotic — but also incredibly meaningful."</i></p>
+
+      <h2>Local TTS & Engineering Challenges</h2>
+      <div class="tag-cloud">
+        <span class="tag">GPT-SoVITS</span>
+        <span class="tag">Streaming Pipeline</span>
+        <span class="tag">Modal Deployment</span>
+        <span class="tag">Python</span>
+      </div>
+      <p>
+        I started by brainstorming a voice for <strong>UU</strong>. What began as a simple <code>runonetime.py</code> script quickly evolved into a complex engineering task. I faced issues with overlapping audio and high latency, leading me to rewrite the entire system into a <strong>streaming pipeline</strong>.
+      </p>
+      <p>
+        Through four iterations of model training and experiments with background tray execution and SSE monitoring, I learned a crucial lesson: <strong>Community benchmarks don't always justify a switch.</strong> The system is now in a "usable and evolving" state, including a successful test deployment to <strong>Modal</strong>.
+      </p>
+
+      <h2>Robotics & Biomimetic Design</h2>
+      <div class="tag-cloud">
+        <span class="tag">Fusion 360</span>
+        <span class="tag">ESP32-C3</span>
+        <span class="tag">Kinematics</span>
+        <span class="tag">Tendon-driven</span>
+      </div>
+      <p>
+        In January, my focus shifted toward building a biomimetic robot. I dived into <strong>MITx 6.002x, Linear Algebra, and Robotics Kinematics</strong>. The hands-on part was messy—I even ruined an ESP32 during soldering—but it taught me invaluable lessons about power management and voltage stability.
+      </p>
+      <p>
+        My design process in <strong>Fusion 360</strong> saw a major breakthrough: moving away from clumsy motor-links to a <strong>motor + tendon-driven structure</strong> inspired by gecko morphology and dexterous robotic hands. I'm starting to think like an engineer—where every dimension is a decision.
+      </p>
+
+      <h2>The Path Ahead</h2>
+      <p>
+        The end of the break brought new challenges: TOEFL preparation and school transfer plans. It's stressful, but it proves I'm no longer thinking short-term. 
+      </p>
+
+      <div class="quote-box">
+        "The most important thing I learned: I’m the kind of person who can keep iterating on a dream. Even when it’s frustrating. Even when it’s chaotic. Even when I fail."
+      </div>
+      
+      <div style="margin-top: 30px; display: flex; gap: 15px;">
+        <a href="projects.html" style="text-decoration: none; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent-blue); padding: 8px 15px; border: 1px solid var(--accent-blue); border-radius: 6px;">
+          VIEW PROJECT (UU)
+        </a>
+        <a href="daily-log.html" style="text-decoration: none; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-sub); padding: 8px 15px; border: 1px solid var(--glass-border); border-radius: 6px;">
+          READ DAILY LOGS
+        </a>
+      </div>
+
+    <footer>
+      MAXIUNG // 2025 // SYSTEM_LOG_END
+    </footer>
+  </div>
+
+</body>
+</html>
