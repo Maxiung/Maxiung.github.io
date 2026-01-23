@@ -8,21 +8,20 @@
   
   <style> 
     :root {   
-      /* 配色方案：白灰底 + 淡蓝色点缀 */
-      --accent-blue: #3782DE;     /* 柔和淡蓝色 */
-      --text-main: #2d2d2d;       /* 深灰文字 */
-      --text-sub: #666666;        /* 辅助文字 */
-      --glass-bg: rgba(255, 255, 255, 0.65); /* 磨砂玻璃背景色 */
+      --accent-blue: #3782DE;     
+      --text-main: #2d2d2d;       
+      --text-sub: #666666;        
+      --glass-bg: rgba(255, 255, 255, 0.65); 
       --glass-border: rgba(255, 255, 255, 0.4);
+      --sticky-bg: rgba(255, 255, 255, 0.8);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      /* 这里上传你的背景图路径 */
       background: url('bg2.jpg') no-repeat center center fixed;
       background-size: cover;
-      background-color: #f0f2f5; /* 图片没加载出来的底色 */
+      background-color: #f0f2f5; 
       color: var(--text-main);
       font-family: 'Inter', sans-serif;
       min-height: 100vh;
@@ -32,12 +31,20 @@
       justify-content: center;
     }
 
-    /* 磨砂透明主面板 */
+    /* 容器：用来承载主面板和旁边的便签 */
+    .main-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      width: 95%;
+      max-width: 1000px;
+      position: relative;
+    }
+
     .glass-panel {
-      width: 90%;
-      max-width: 800px;
+      flex: 3; /* 主面板占据更多空间 */
       background: var(--glass-bg);
-      backdrop-filter: blur(15px); /* 磨砂核心代码 */
+      backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
       border: 1px solid var(--glass-border);
       border-radius: 12px;
@@ -45,7 +52,34 @@
       overflow: hidden;
     }
 
-    /* 顶部修饰条 */
+    /* 右侧便签组 */
+    .sticky-notes {
+      flex: 1;
+      max-width: 180px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .note-item {
+      background: var(--sticky-bg);
+      backdrop-filter: blur(10px);
+      padding: 15px;
+      border-left: 4px solid var(--accent-blue);
+      text-decoration: none;
+      color: var(--text-main);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      box-shadow: 4px 4px 15px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+
+    .note-item:hover {
+      transform: translateX(5px);
+      background: #fff;
+    }
+
     .panel-header {
       padding: 15px 30px;
       border-bottom: 1px solid var(--glass-border);
@@ -57,7 +91,6 @@
       text-transform: uppercase;
     }
 
-    /* 个人信息区 */
     .profile-section {
       padding: 50px 40px;
       display: flex;
@@ -68,7 +101,7 @@
     .avatar {
       width: 90px;
       height: 90px;
-      border-radius: 50%; /* 圆形头像 */
+      border-radius: 50%;
       border: 2px solid white;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       overflow: hidden;
@@ -78,9 +111,9 @@
     .avatar img { width: 100%; height: 100%; object-fit: cover; }
 
     .name-info h1 {
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: 600;
-      margin-bottom: 4px;
+      letter-spacing: -0.5px;
       color: var(--text-main);
     }
 
@@ -91,7 +124,6 @@
       font-weight: 600;
     }
 
-    /* 介绍文本 */
     .bio-content {
       padding: 0 40px 40px 40px;
     }
@@ -108,7 +140,6 @@
       font-weight: 500;
     }
 
-    /* 底部导航链接 */
     .nav-grid {
       display: flex;
       border-top: 1px solid var(--glass-border);
@@ -116,12 +147,12 @@
 
     .nav-item {
       flex: 1;
-      padding: 25px;
+      padding: 20px 10px;
       text-align: center;
       text-decoration: none;
       color: var(--text-main);
       font-family: 'Space Mono', monospace;
-      font-size: 13px;
+      font-size: 12px;
       transition: background 0.3s;
       border-right: 1px solid var(--glass-border);
     }
@@ -134,7 +165,7 @@
 
     .nav-num {
       display: block;
-      font-size: 10px;
+      font-size: 9px;
       color: var(--accent-blue);
       margin-bottom: 4px;
     }
@@ -145,45 +176,68 @@
       font-size: 10px;
       color: rgba(0, 0, 0, 0.4);
     }
+
+    /* 适配手机屏幕 */
+    @media (max-width: 768px) {
+      .main-container { flex-direction: column; align-items: center; }
+      .sticky-notes { flex-direction: row; max-width: 100%; flex-wrap: wrap; justify-content: center; }
+      .nav-item { font-size: 10px; }
+    }
   </style>
 </head>
 
 <body>
-  <div class="glass-panel">
-    <div class="panel-header">
-      <span>SJSU // ISE 2029</span>
-      <span>System Status: Online</span>
+  <div class="main-container">
+    <div class="glass-panel">
+      <div class="panel-header">
+        <span>SJSU // ISE 2029</span>
+        <span>System Status: Online</span>
+      </div>
+
+      <section class="profile-section">
+        <div class="avatar">
+          <img src="avatar.jpg" alt="Maxiung">
+        </div>
+        <div class="name-info">
+          <h1>Maxiung</h1>
+          <p>Robotics & HCI Enthusiast</p>
+        </div>
+      </section>
+
+      <section class="bio-content">
+        <p class="bio-text">
+          学习<span class="highlight">机器人</span>中，喜欢 <span class="highlight">HCI (人机交互)</span> 领域。
+          致力于探索智能系统与人类最自然的交互方式。
+        </p>
+      </section>
+
+      <nav class="nav-grid">
+        <a href="projects.html" class="nav-item">
+          <span class="nav-num">01</span>PROJECTS
+        </a>
+        <a href="learning.html" class="nav-item">
+          <span class="nav-num">02</span>LEARNING
+        </a>
+        <a href="academics.html" class="nav-item">
+          <span class="nav-num">03</span>ACADEMICS
+        </a>
+        <a href="daily-log.html" class="nav-item">
+          <span class="nav-num">04</span>DAILY LOG
+        </a>
+      </nav>
     </div>
 
-    <section class="profile-section">
-      <div class="avatar">
-        <img src="avatar.jpg" alt="Maxiung">
-      </div>
-      <div class="name-info">
-        <h1>Xiaoxing Maxiung</h1>
-        <p>Robotics & Voice AI Engineer</p>
-      </div>
-    </section>
-
-    <section class="bio-content">
-      <p class="bio-text">
-        ISE student at SJSU. Building intelligent <span class="highlight">mechanical systems</span> 
-        and <span class="highlight">voice-controlled interfaces</span>. 
-        Focusing on industrial efficiency.
-      </p>
-    </section>
-
-    <nav class="nav-grid">
-      <a href="projects.html" class="nav-item">
-        <span class="nav-num">01</span>PROJECTS
+    <aside class="sticky-notes">
+      <a href="personal-project.html" class="note-item">
+        ➜ PERSONAL PROJECT
       </a>
-      <a href="learning.html" class="nav-item">
-        <span class="nav-num">02</span>LEARNING
+      <a href="self-learning.html" class="note-item">
+        ➜ SELF LEARNING
       </a>
-      <a href="academics.html" class="nav-item">
-        <span class="nav-num">03</span>ACADEMICS
+      <a href="conclusion.html" class="note-item">
+        ➜ MONTH CONCLUSION
       </a>
-    </nav>
+    </aside>
   </div>
 
   <footer>
