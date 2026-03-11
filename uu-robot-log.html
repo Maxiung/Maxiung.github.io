@@ -75,7 +75,7 @@
     .log-entry {
       border-left: 3px solid var(--glass-border);
       padding-left: 24px;
-      margin-bottom: 40px;
+      margin-bottom: 48px;
       position: relative;
     }
 
@@ -139,6 +139,28 @@
       border-radius: 2px;
     }
 
+    .log-img {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--glass-border);
+      margin-top: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+
+    .img-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .img-row img {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+
     footer {
       padding: 30px;
       text-align: center;
@@ -157,47 +179,106 @@
         <a href="index.html">← TERMINAL</a> / <a href="personal-project.html">PERSONAL PROJECTS</a> / UU ROBOT
       </div>
       <h1>UU Robot</h1>
-      <p class="subtitle">PROJECT LOG // BIOMIMETIC ROBOT HAND</p>
+      <p class="subtitle">PROJECT LOG // BIOMIMETIC ROBOT</p>
     </header>
 
     <div class="content-section">
       <h2>Build Log</h2>
 
+      <!-- Entry 1 -->
       <div class="log-entry">
-        <div class="log-date">2026-01 — WEEK 1</div>
-        <div class="log-title">Concept & Initial Research</div>
+        <div class="log-date">LOG 01</div>
+        <div class="log-title">First Linkage Study</div>
         <div class="tag-cloud">
           <span class="tag">Kinematics</span>
-          <span class="tag">Biomimetics</span>
-        </div>
-        <p>
-          Started studying gecko morphology and dexterous robotic hand designs. Defined the core goal: a <strong>tendon-driven hand</strong> that prioritizes compact form factor over brute force.
-        </p>
-      </div>
-
-      <div class="log-entry">
-        <div class="log-date">2026-01 — WEEK 2</div>
-        <div class="log-title">Fusion 360 Design Iterations</div>
-        <div class="tag-cloud">
+          <span class="tag">Linkage Mechanism</span>
           <span class="tag">Fusion 360</span>
-          <span class="tag">CAD</span>
         </div>
         <p>
-          Moved away from clumsy motor-link structures. Redesigned joints with a <strong>motor + tendon</strong> approach — lighter, more biomimetic, better range of motion. Every dimension is a deliberate engineering decision.
+          First attempt at understanding <strong>mechanical linkage systems</strong> in Fusion 360. Modeled a basic servo-driven two-bar linkage to study joint range of motion and force transmission before committing to a full finger design.
         </p>
+        <img src="uu-r1.png" alt="First linkage study in Fusion 360" class="log-img">
       </div>
 
+      <!-- Entry 2 -->
       <div class="log-entry">
-        <div class="log-date">2026-01 — WEEK 3</div>
-        <div class="log-title">Electronics & First Wiring</div>
+        <div class="log-date">LOG 02</div>
+        <div class="log-title">Overall Body Form Concept</div>
         <div class="tag-cloud">
-          <span class="tag">ESP32-C3</span>
-          <span class="tag">Soldering</span>
-          <span class="tag">Power Management</span>
+          <span class="tag">Body Layout</span>
+          <span class="tag">Concept Design</span>
+          <span class="tag">Fusion 360</span>
         </div>
         <p>
-          Set up the ESP32-C3 as the main controller. Learned hard lessons about <strong>voltage stability</strong> — ruined one board during soldering. Added decoupling capacitors and improved the power rail design.
+          Roughed out the overall <strong>body proportion and motor placement</strong>. This stage focused on fitting multiple actuators into a compact torso while keeping the center of mass low. The hexagonal internal structure hints at a lightweight lattice approach.
         </p>
+        <img src="uu-r2.png" alt="Overall body form concept" class="log-img">
+      </div>
+
+      <!-- Entry 3 & 4 -->
+      <div class="log-entry">
+        <div class="log-date">LOG 03</div>
+        <div class="log-title">Fusion 360 Modeling Practice</div>
+        <div class="tag-cloud">
+          <span class="tag">CAD Basics</span>
+          <span class="tag">Joint Design</span>
+          <span class="tag">Fusion 360</span>
+        </div>
+        <p>
+          Dedicated sessions to building core Fusion 360 skills — practicing <strong>revolute joints, pin constraints, and parametric modeling</strong>. The spine-like chain of joints (left) and the tendon-actuated ankle joint (right) were both exercises in achieving clean, repeatable geometry.
+        </p>
+        <div class="img-row">
+          <img src="uu-r3.png" alt="Modular joint chain modeling practice">
+          <img src="uu-r4.png" alt="Tendon-actuated ankle joint modeling practice">
+        </div>
+      </div>
+
+      <!-- Entry 5 -->
+      <div class="log-entry">
+        <div class="log-date">LOG 04</div>
+        <div class="log-title">Neck Module Design</div>
+        <div class="tag-cloud">
+          <span class="tag">Neck Joint</span>
+          <span class="tag">DOF Design</span>
+          <span class="tag">Fusion 360</span>
+        </div>
+        <p>
+          Designed the <strong>neck module</strong> with multi-axis rotation in mind. The flange-and-screw coupling allows the head to pan and tilt while keeping the connection rigid enough to support the head assembly. Two iterations shown side by side.
+        </p>
+        <div class="img-row">
+          <img src="uu-r5.0.png" alt="Neck module — flange coupling design">
+          <img src="uu-r5.1.png" alt="Neck module — alternate view">
+        </div>
+      </div>
+
+      <!-- Entry 6 -->
+      <div class="log-entry">
+        <div class="log-date">LOG 05</div>
+        <div class="log-title">Head Model — Gecko-Inspired</div>
+        <div class="tag-cloud">
+          <span class="tag">Head Design</span>
+          <span class="tag">Biomimetics</span>
+          <span class="tag">Fusion 360</span>
+        </div>
+        <p>
+          First full head model drawing from <strong>gecko facial geometry</strong> — wide-set eyes, a prominent brow ridge, and an articulated jaw mechanism. The organic surface sits over a rigid mechanical frame, balancing expressiveness with structural integrity.
+        </p>
+        <img src="uu-r6.png" alt="Gecko-inspired head model" class="log-img">
+      </div>
+
+      <!-- Entry 7 -->
+      <div class="log-entry">
+        <div class="log-date">LOG 06</div>
+        <div class="log-title">Full Body Assembly Concept</div>
+        <div class="tag-cloud">
+          <span class="tag">Full Assembly</span>
+          <span class="tag">Body Structure</span>
+          <span class="tag">Fusion 360</span>
+        </div>
+        <p>
+          First complete assembly bringing together the head, torso, and limb stubs. The <strong>grid-panel torso</strong> houses the main actuators, with arms extending horizontally via axle mounts. This is the first time the robot read as a coherent whole rather than isolated parts.
+        </p>
+        <img src="uu-r7.png" alt="Full body assembly concept" class="log-img">
       </div>
 
     </div>
