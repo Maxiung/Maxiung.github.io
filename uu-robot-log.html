@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UU Robot — Project Log | Maxiung</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent-blue: #3782DE;
+      --text-main: #2d2d2d;
+      --text-sub: #666666;
+      --glass-bg: rgba(255, 255, 255, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.4);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: url('bg2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 850px;
+      width: 100%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      overflow: hidden;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    header {
+      padding: 40px;
+      border-bottom: 1px solid var(--glass-border);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .breadcrumb {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-bottom: 20px;
+    }
+
+    .breadcrumb a {
+      color: var(--accent-blue);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    h1 { font-size: 2rem; font-weight: 600; margin-bottom: 10px; }
+    .subtitle { font-family: 'Space Mono', monospace; color: var(--text-sub); font-size: 13px; }
+
+    .content-section { padding: 40px; }
+
+    .log-entry {
+      border-left: 3px solid var(--glass-border);
+      padding-left: 24px;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .log-entry::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      border: 2px solid white;
+      box-shadow: 0 0 0 2px var(--accent-blue);
+    }
+
+    .log-entry:last-child { margin-bottom: 0; }
+
+    .log-date {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--accent-blue);
+      margin-bottom: 8px;
+    }
+
+    .log-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .tag-cloud { margin: 10px 0 14px 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      padding: 4px 12px;
+      background: rgba(55, 130, 222, 0.08);
+      border: 1px solid rgba(55, 130, 222, 0.3);
+      color: var(--accent-blue);
+      border-radius: 20px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+    }
+
+    p { margin-bottom: 14px; color: var(--text-sub); font-size: 1rem; }
+    p:last-child { margin-bottom: 0; }
+    strong { color: var(--text-main); font-weight: 600; }
+
+    h2 {
+      font-size: 1.3rem;
+      margin: 0 0 30px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    h2::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 22px;
+      background: var(--accent-blue);
+      border-radius: 2px;
+    }
+
+    footer {
+      padding: 30px;
+      text-align: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--text-sub);
+      border-top: 1px solid var(--glass-border);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="breadcrumb">
+        <a href="index.html">← TERMINAL</a> / <a href="personal-project.html">PERSONAL PROJECTS</a> / UU ROBOT
+      </div>
+      <h1>UU Robot</h1>
+      <p class="subtitle">PROJECT LOG // BIOMIMETIC ROBOT HAND</p>
+    </header>
+
+    <div class="content-section">
+      <h2>Build Log</h2>
+
+      <div class="log-entry">
+        <div class="log-date">2026-01 — WEEK 1</div>
+        <div class="log-title">Concept & Initial Research</div>
+        <div class="tag-cloud">
+          <span class="tag">Kinematics</span>
+          <span class="tag">Biomimetics</span>
+        </div>
+        <p>
+          Started studying gecko morphology and dexterous robotic hand designs. Defined the core goal: a <strong>tendon-driven hand</strong> that prioritizes compact form factor over brute force.
+        </p>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-date">2026-01 — WEEK 2</div>
+        <div class="log-title">Fusion 360 Design Iterations</div>
+        <div class="tag-cloud">
+          <span class="tag">Fusion 360</span>
+          <span class="tag">CAD</span>
+        </div>
+        <p>
+          Moved away from clumsy motor-link structures. Redesigned joints with a <strong>motor + tendon</strong> approach — lighter, more biomimetic, better range of motion. Every dimension is a deliberate engineering decision.
+        </p>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-date">2026-01 — WEEK 3</div>
+        <div class="log-title">Electronics & First Wiring</div>
+        <div class="tag-cloud">
+          <span class="tag">ESP32-C3</span>
+          <span class="tag">Soldering</span>
+          <span class="tag">Power Management</span>
+        </div>
+        <p>
+          Set up the ESP32-C3 as the main controller. Learned hard lessons about <strong>voltage stability</strong> — ruined one board during soldering. Added decoupling capacitors and improved the power rail design.
+        </p>
+      </div>
+
+    </div>
+
+    <footer>
+      MAXIUNG // 2026 // UU_ROBOT_LOG
+    </footer>
+  </div>
+
+</body>
+</html>
