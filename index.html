@@ -32,18 +32,16 @@
       overflow-x: hidden;
     }
 
-    /* 核心容器：保持相对定位，方便便签定位 */
     .main-container {
-      position: relative;
-      width: 90%;
-      max-width: 800px;
+      width: 95%;
+      max-width: 1150px;
       display: flex;
-      justify-content: center;
+      align-items: flex-start;
+      gap: 20px;
     }
 
-    /* 主面板：依然保持原有的宽度和居中状态 */
     .glass-panel {
-      width: 100%;
+      flex: 0 0 480px;
       background: var(--glass-bg);
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
@@ -51,28 +49,86 @@
       border-radius: 12px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
       overflow: hidden;
-      z-index: 2;
     }
 
-    /* 右侧便签组：绝对定位在主面板右侧 */
-    .sticky-notes {
-      position: absolute;
-      left: calc(100% + 15px); /* 紧贴主面板右侧，留15px间距 */
-      top: 0;
-      bottom: 0;
+    /* 右侧特色区 */
+    .featured-right {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: space-evenly;
-      width: 160px;
+      gap: 14px;
+      min-width: 0;
     }
 
+    /* 视频大卡片 */
+    .featured-card {
+      display: block;
+      text-decoration: none;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .featured-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(55,130,222,0.18);
+    }
+
+    .featured-card video {
+      width: 100%;
+      display: block;
+      max-height: 220px;
+      object-fit: cover;
+    }
+
+    .featured-card-body {
+      padding: 12px 16px;
+    }
+
+    .featured-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 3px;
+    }
+
+    .featured-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* head1 图片卡片 */
+    .head-card {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+
+    .head-card img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      max-height: 180px;
+    }
+
+    /* 小链接 */
     .note-item {
       background: var(--sticky-bg);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       padding: 12px 15px;
       border-left: 4px solid var(--accent-blue);
-      border-radius: 8px; /* Fillet 圆角 */
+      border-radius: 8px;
       text-decoration: none;
       color: var(--text-main);
       font-family: 'Space Mono', monospace;
@@ -80,11 +136,10 @@
       font-weight: 600;
       box-shadow: 0 4px 15px rgba(0,0,0,0.05);
       transition: all 0.3s ease;
-      white-space: nowrap;
     }
 
     .note-item:hover {
-      transform: translateX(8px);
+      transform: translateX(6px);
       background: #ffffff;
       color: var(--accent-blue);
     }
@@ -185,21 +240,22 @@
       color: rgba(0, 0, 0, 0.4);
     }
 
-    /* 小屏幕：便签移到面板下方 */
     @media (max-width: 1100px) {
       .main-container {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
       }
-      .sticky-notes {
-        position: static;
-        flex-direction: row;
+      .glass-panel {
+        flex: none;
         width: 100%;
-        justify-content: center;
-        margin-top: 15px;
-        flex-wrap: wrap;
-        gap: 10px;
       }
+      .featured-right {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .featured-card { flex: 1 1 280px; }
+      .head-card { flex: 1 1 200px; }
+      .note-item { flex: 1 1 140px; }
     }
 
     /* 平板适配 */
@@ -271,7 +327,6 @@
       .note-item {
         font-size: 9px;
         padding: 10px 12px;
-        white-space: normal;
       }
       footer {
         text-align: center;
@@ -320,16 +375,24 @@
       </nav>
     </div>
 
-    <aside class="sticky-notes">
-      <a href="personal-project.html" class="note-item">
-        ➜ PERSONAL PROJECT
+    <aside class="featured-right">
+      <a href="personal-project.html" class="featured-card">
+        <video autoplay muted loop playsinline>
+          <source src="video1.mov" type="video/quicktime">
+          <source src="video1.mov" type="video/mp4">
+        </video>
+        <div class="featured-card-body">
+          <div class="featured-label">PERSONAL PROJECT</div>
+          <div class="featured-title">UU ROBOT — IN PROGRESS</div>
+        </div>
       </a>
-      <a href="self-learning.html" class="note-item">
-        ➜ SELF LEARNING
-      </a>
-      <a href="conclusion.html" class="note-item">
-        ➜ MONTH CONCLUSION
-      </a>
+
+      <div class="head-card">
+        <img src="head1.jpeg" alt="UU Robot Head Model">
+      </div>
+
+      <a href="self-learning.html" class="note-item">➜ SELF LEARNING</a>
+      <a href="conclusion.html" class="note-item">➜ MONTH CONCLUSION</a>
     </aside>
   </div>
 
