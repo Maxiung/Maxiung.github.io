@@ -3,288 +3,230 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>UU Robot — Project Log | Maxiung</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>UU Robot — Engineering Journey | Maxi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --accent-blue: #3782DE;
-      --text-main: #2d2d2d;
-      --text-sub: #666666;
-      --glass-bg: rgba(255, 255, 255, 0.75);
-      --glass-border: rgba(255, 255, 255, 0.4);
+      --bg: #ffffff;
+      --section-bg: #f9f9f9;
+      --text: #1a1a1a;
+      --text-light: #606060;
+      --accent: #3782DE;
+      --line: #eeeeee;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: url('bg2.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background-color: var(--bg);
+      color: var(--text);
       font-family: 'Inter', sans-serif;
-      color: var(--text-main);
-      line-height: 1.6;
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      line-height: 1.7; /* 稍微加高行距，适合阅读长文 */
+      -webkit-font-smoothing: antialiased;
     }
 
     .container {
-      max-width: 850px;
-      width: 100%;
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-      overflow: hidden;
-      animation: fadeIn 0.8s ease-out;
+      max-width: 850px; /* 日志页面稍微收窄，更有阅读美感 */
+      margin: 0 auto;
+      padding: 0 40px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
+    /* ── HEADER ── */
     header {
-      padding: 40px;
-      border-bottom: 1px solid var(--glass-border);
-      background: rgba(255, 255, 255, 0.2);
+      padding: 40px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
     }
 
-    .breadcrumb {
-      font-family: 'Space Mono', monospace;
-      font-size: 12px;
-      color: var(--text-sub);
+    .back-btn {
+      text-decoration: none;
+      color: var(--text-light);
+      font-size: 13px;
+      font-family: 'JetBrains Mono', monospace;
+      transition: color 0.2s;
+    }
+    .back-btn:hover { color: var(--accent); }
+
+    .logo {
+      font-weight: 600;
+      font-size: 18px;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    /* ── TITLE BLOCK ── */
+    .journey-title {
+      padding: 60px 0 40px;
+    }
+
+    .journey-title h1 {
+      font-size: 42px;
+      font-weight: 600;
+      letter-spacing: -1.5px;
       margin-bottom: 20px;
     }
 
-    .breadcrumb a {
-      color: var(--accent-blue);
-      text-decoration: none;
+    .journey-subtitle {
+      font-size: 18px;
+      color: var(--text-light);
+      font-weight: 300;
+      border-left: 2px solid var(--accent);
+      padding-left: 20px;
+      margin-bottom: 30px;
     }
 
-    .breadcrumb a:hover { text-decoration: underline; }
-
-    h1 { font-size: 2rem; font-weight: 600; margin-bottom: 10px; }
-    .subtitle { font-family: 'Space Mono', monospace; color: var(--text-sub); font-size: 13px; }
-
-    .content-section { padding: 40px; }
-
-    .log-entry {
-      border-left: 3px solid var(--glass-border);
-      padding-left: 24px;
-      margin-bottom: 48px;
-      position: relative;
+    /* ── CONTENT BODY ── */
+    .content-body {
+      padding-bottom: 100px;
     }
 
-    .log-entry::before {
-      content: '';
-      position: absolute;
-      left: -6px;
-      top: 6px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent-blue);
-      border: 2px solid white;
-      box-shadow: 0 0 0 2px var(--accent-blue);
+    .lesson-block {
+      background-color: var(--section-bg);
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 50px;
+      border: 1px solid rgba(0,0,0,0.02);
     }
 
-    .log-entry:last-child { margin-bottom: 0; }
-
-    .log-date {
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      color: var(--accent-blue);
-      margin-bottom: 8px;
-    }
-
-    .log-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text-main);
-      margin-bottom: 12px;
-    }
-
-    .tag-cloud { margin: 10px 0 14px 0; display: flex; flex-wrap: wrap; gap: 8px; }
-    .tag {
-      padding: 4px 12px;
-      background: rgba(55, 130, 222, 0.08);
-      border: 1px solid rgba(55, 130, 222, 0.3);
-      color: var(--accent-blue);
-      border-radius: 20px;
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-    }
-
-    p { margin-bottom: 14px; color: var(--text-sub); font-size: 1rem; }
-    p:last-child { margin-bottom: 0; }
-    strong { color: var(--text-main); font-weight: 600; }
-
-    h2 {
-      font-size: 1.3rem;
-      margin: 0 0 30px 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    h2::before {
-      content: '';
+    .lesson-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 10px;
       display: block;
-      width: 4px;
-      height: 22px;
-      background: var(--accent-blue);
-      border-radius: 2px;
     }
 
-    .log-img {
-      width: 100%;
-      border-radius: 10px;
-      border: 1px solid var(--glass-border);
-      margin-top: 16px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    .lesson-block h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      line-height: 1.3;
     }
 
-    .img-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 16px;
+    .lesson-block p {
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: #333;
     }
 
-    .img-row img {
-      width: 100%;
-      border-radius: 10px;
-      border: 1px solid var(--glass-border);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    .takeaway {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px dotted #ccc;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .takeaway strong { color: var(--accent); }
+
+    /* ── SMALL BATTLE SCARS (附录感) ── */
+    .scars-section {
+      padding: 40px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
     }
 
+    .scars-section h3 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .scars-list {
+      list-style: none;
+    }
+
+    .scars-list li {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 15px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .scars-list li::before {
+      content: "→";
+      color: var(--accent);
+    }
+
+    .scars-list b { color: var(--text); font-weight: 500; }
+
+    /* ── FOOTER ── */
     footer {
-      padding: 30px;
+      padding: 60px 0;
+      border-top: 1px solid var(--line);
       text-align: center;
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      color: var(--text-sub);
-      border-top: 1px solid var(--glass-border);
+      color: #bbb;
+      font-size: 12px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    @media (max-width: 600px) {
+      .journey-title h1 { font-size: 32px; }
+      .lesson-block { padding: 25px; }
     }
   </style>
 </head>
+
 <body>
 
   <div class="container">
     <header>
-      <div class="breadcrumb">
-        <a href="index.html">← TERMINAL</a> / <a href="personal-project.html">PERSONAL PROJECTS</a> / UU ROBOT
-      </div>
-      <h1>UU Robot</h1>
-      <p class="subtitle">PROJECT LOG // BIOMIMETIC ROBOT</p>
+      <a href="index.html" class="back-btn">← BACK TO INDEX</a>
+      <a href="index.html" class="logo">MAXI</a>
     </header>
 
-    <div class="content-section">
-      <h2>Build Log</h2>
-
-      <!-- Entry 1 -->
-      <div class="log-entry">
-        <div class="log-date">LOG 01</div>
-        <div class="log-title">First Linkage Study</div>
-        <div class="tag-cloud">
-          <span class="tag">Kinematics</span>
-          <span class="tag">Linkage Mechanism</span>
-          <span class="tag">Fusion 360</span>
-        </div>
-        <p>
-          First attempt at understanding <strong>mechanical linkage systems</strong> in Fusion 360. Modeled a basic servo-driven two-bar linkage to study joint range of motion and force transmission before committing to a full finger design.
+    <main class="content-body">
+      
+      <section class="journey-title">
+        <h1>UU — Engineering Journey</h1>
+        <p class="journey-subtitle">
+          A first-year ISE student's palm-sized gecko quadruped. Selected lessons from months of solo development — a record of mistakes that taught me how to think about robots.
         </p>
-        <img src="uu-r1.png" alt="First linkage study in Fusion 360" class="log-img">
-      </div>
+      </section>
 
-      <!-- Entry 2 -->
-      <div class="log-entry">
-        <div class="log-date">LOG 02</div>
-        <div class="log-title">Overall Body Form Concept</div>
-        <div class="tag-cloud">
-          <span class="tag">Body Layout</span>
-          <span class="tag">Concept Design</span>
-          <span class="tag">Fusion 360</span>
-        </div>
-        <p>
-          Roughed out the overall <strong>body proportion and motor placement</strong>. This stage focused on fitting multiple actuators into a compact torso while keeping the center of mass low. The hexagonal internal structure hints at a lightweight lattice approach.
-        </p>
-        <img src="uu-r2.png" alt="Overall body form concept" class="log-img">
-      </div>
+      <article class="lesson-block">
+        <span class="lesson-num">Lesson 01</span>
+        <h2>When your bio-inspiration is wrong, your mechanics can't save you</h2>
+        <p>My initial plan was cable-driven legs. I built out the mechanical design: threading holes, foot-end cable clamps, and routing sheaths. At palm-size, FDM print tolerances made the threading holes inconsistent — a single pull could torque a joint backwards.</p>
+        <p>But the deeper problem was conceptual. Vertebrate quadruped legs have elbows, meaning adjacent joints bend in opposite directions. I was designing a vertebrate with an arthropod's driver.</p>
+        <div class="takeaway"><strong>TAKEAWAY:</strong> The choice of biological reference is a load-bearing design decision. Get it wrong and no amount of mechanical cleverness recovers it.</div>
+      </article>
 
-      <!-- Entry 3 & 4 -->
-      <div class="log-entry">
-        <div class="log-date">LOG 03</div>
-        <div class="log-title">Fusion 360 Modeling Practice</div>
-        <div class="tag-cloud">
-          <span class="tag">CAD Basics</span>
-          <span class="tag">Joint Design</span>
-          <span class="tag">Fusion 360</span>
-        </div>
-        <p>
-          Dedicated sessions to building core Fusion 360 skills — practicing <strong>revolute joints, pin constraints, and parametric modeling</strong>. The spine-like chain of joints (left) and the tendon-actuated ankle joint (right) were both exercises in achieving clean, repeatable geometry.
-        </p>
-        <div class="img-row">
-          <img src="uu-r3.png" alt="Modular joint chain modeling practice">
-          <img src="uu-r4.png" alt="Tendon-actuated ankle joint modeling practice">
-        </div>
-      </div>
+      <article class="lesson-block">
+        <span class="lesson-num">Lesson 02</span>
+        <h2>Don't place the motor where the pivot should be; place the pivot where the motor allows</h2>
+        <p>I copied a design that used a four-bar linkage plus a cam for roll-axis lift. But the cam footprint was too large. I realized pitch DOF is non-negotiable for UU because uneven terrain requires the hip to move fore-aft.</p>
+        <p>The fix was a geometric pivot: the foot-end trajectory doesn't need to orbit the motor shaft directly — it just needs the shank's highest point to stay above the motor output. Once I let the effective pivot float, the arch trajectory fell out of the math.</p>
+        <div class="takeaway"><strong>TAKEAWAY:</strong> The motor's location and the effective rotational center don't have to be the same point. This unlocks geometries that look impossible.</div>
+      </article>
 
-      <!-- Entry 5 -->
-      <div class="log-entry">
-        <div class="log-date">LOG 04</div>
-        <div class="log-title">Neck Module Design</div>
-        <div class="tag-cloud">
-          <span class="tag">Neck Joint</span>
-          <span class="tag">DOF Design</span>
-          <span class="tag">Fusion 360</span>
-        </div>
-        <p>
-          Designed the <strong>neck module</strong> with multi-axis rotation in mind. The flange-and-screw coupling allows the head to pan and tilt while keeping the connection rigid enough to support the head assembly. Two iterations shown side by side.
-        </p>
-        <div class="img-row">
-          <img src="uu-r5.0.png" alt="Neck module — flange coupling design">
-          <img src="uu-r5.1.png" alt="Neck module — alternate view">
-        </div>
-      </div>
+      <article class="lesson-block">
+        <span class="lesson-num">Lesson 03</span>
+        <h2>Mirrored in space, inverted in time</h2>
+        <p>I mirrored the front and rear legs as exact geometric copies. But UU is independently controlled per leg. When I tried to walk with geometric symmetry, the rear legs couldn't produce forward thrust.</p>
+        <p>The fix was temporal. The four-bar state of the rear leg during its stance phase needs to correspond to the front leg's swing phase state — the mirror is in time, not in shape.</p>
+        <div class="takeaway"><strong>TAKEAWAY:</strong> Geometric symmetry doesn't imply temporal symmetry. What looks mirrored in CAD may need to be phase-inverted in firmware.</div>
+      </article>
 
-      <!-- Entry 6 -->
-      <div class="log-entry">
-        <div class="log-date">LOG 05</div>
-        <div class="log-title">Head Model — Gecko-Inspired</div>
-        <div class="tag-cloud">
-          <span class="tag">Head Design</span>
-          <span class="tag">Biomimetics</span>
-          <span class="tag">Fusion 360</span>
-        </div>
-        <p>
-          First full head model drawing from <strong>gecko facial geometry</strong> — wide-set eyes, a prominent brow ridge, and an articulated jaw mechanism. The organic surface sits over a rigid mechanical frame, balancing expressiveness with structural integrity.
-        </p>
-        <img src="uu-r6.png" alt="Gecko-inspired head model" class="log-img">
-      </div>
+      <section class="scars-section">
+        <h3>// SMALL BATTLE SCARS</h3>
+        <ul class="scars-list">
+          <li><b>Power Rails:</b> Servos need an independent rail.MCU regulators produce voltage sag and twitching.</li>
+          <li><b>PWM Limits:</b> ESP32-C3 has limited PWM channels; solved by time-multiplexing with attach()/detach().</li>
+          <li><b>CAD vs Print:</b> Designed with explicit +0.2mm clearance on mating features after re-drilling every hole.</li>
+          <li><b>Over-engineering:</b> Packed too many stiffening features in 4cm² and couldn't get a screwdriver in.</li>
+        </ul>
+      </section>
 
-      <!-- Entry 7 -->
-      <div class="log-entry">
-        <div class="log-date">LOG 06</div>
-        <div class="log-title">Full Body Assembly Concept</div>
-        <div class="tag-cloud">
-          <span class="tag">Full Assembly</span>
-          <span class="tag">Body Structure</span>
-          <span class="tag">Fusion 360</span>
-        </div>
-        <p>
-          First complete assembly bringing together the head, torso, and limb stubs. The <strong>grid-panel torso</strong> houses the main actuators, with arms extending horizontally via axle mounts. This is the first time the robot read as a coherent whole rather than isolated parts.
-        </p>
-        <img src="uu-r7.png" alt="Full body assembly concept" class="log-img">
-      </div>
-
-    </div>
+    </main>
 
     <footer>
-      MAXIUNG // 2026 // UU_ROBOT_LOG
+      // UPDATED 2026.04 // MORE LESSONS INCOMING
     </footer>
   </div>
 
