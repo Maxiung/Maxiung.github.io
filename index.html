@@ -3,260 +3,315 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>UU Robot — Project Log | Maxiung</title>
+  <title>Maxiung | Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&family=Syncopate:wght@700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-color: #f7f7f7; /* 参考图3的背景色 */
-      --accent-color: #000000; 
+      --bg: #f0f0f0;          /* 仿图3的暖灰色底色 */
       --text-main: #1a1a1a;
-      --text-sub: #888888;
-      --border-color: #e0e0e0;
-      --highlight: #3782DE; /* 品牌点缀蓝 */
+      --text-sub: #8a8a8a;
+      --accent: #3782DE;      /* 品牌克莱因蓝 */
+      --border: #dcdcdc;
+      --white: #ffffff;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background-color: var(--bg-color);
-      font-family: 'Space Grotesk', sans-serif;
+      background-color: var(--bg);
       color: var(--text-main);
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
+      font-family: 'Space Grotesk', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.4;
     }
 
-    /* 全局布局布局 - 参考图2的网格感 */
-    .wrapper {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 60px 40px;
+    /* ── 背景纹理 (增加纸张质感) ── */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url("https://www.transparenttextures.com/patterns/pinstripe.png");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* ── HERO SECTION (参考图1/2的非对称设计) ── */
+    .hero {
       display: grid;
-      grid-template-columns: 350px 1fr; /* 左侧固定信息，右侧滚动流 */
-      gap: 60px;
+      grid-template-columns: 1.2fr 0.8fr;
+      min-height: 100vh;
+      border-bottom: 1px solid var(--border);
     }
 
-    /* 左侧侧边栏 - 模仿图3的个人简介区 */
-    aside {
-      position: sticky;
-      top: 60px;
-      height: fit-content;
+    .hero-content {
+      padding: 80px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid var(--border);
     }
 
-    .brand-id {
+    .hero-meta {
       font-family: 'Syncopate', sans-serif;
       font-size: 10px;
-      letter-spacing: 4px;
+      letter-spacing: 0.3em;
+      color: var(--text-sub);
       text-transform: uppercase;
-      margin-bottom: 40px;
-      color: var(--highlight);
     }
 
-    h1 {
-      font-size: 4rem;
+    .hero-name {
+      font-size: clamp(5rem, 12vw, 10rem);
       font-weight: 600;
-      line-height: 0.9;
-      margin-bottom: 20px;
-      letter-spacing: -2px;
+      line-height: 0.85;
+      letter-spacing: -0.05em;
+      margin: 40px 0;
     }
 
-    .project-meta {
-      border-top: 1px solid var(--border-color);
-      padding-top: 20px;
-      font-size: 14px;
+    .hero-name em {
+      font-style: normal;
+      color: var(--accent);
+      display: block;
+      font-weight: 300;
+    }
+
+    .hero-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-bio {
+      font-size: 15px;
       color: var(--text-sub);
     }
 
-    .project-meta div { margin-bottom: 10px; }
-    .project-meta strong { color: var(--text-main); font-weight: 500; }
+    .hero-bio strong { color: var(--text-main); font-weight: 500; }
 
-    /* 右侧日志流 - 模仿图1和图3的作品展示 */
-    .log-stream {
-      display: flex;
-      flex-direction: column;
-      gap: 120px;
+    .nav-list {
+      list-style: none;
     }
 
-    .log-card {
+    .nav-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: 0.3s;
+    }
+
+    .nav-item:hover { color: var(--accent); padding-left: 10px; }
+
+    /* ── AVATAR SIDE (参考图3侧边布局) ── */
+    .hero-image {
+      background: var(--white);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .avatar-container {
+      flex-grow: 1;
+      background: #e0e0e0;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    .avatar-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(1);
+      mix-blend-mode: multiply;
+      transition: 0.5s;
+    }
+
+    .avatar-container:hover img { filter: grayscale(0); }
+
+    .coords {
+      font-family: 'Syncopate', sans-serif;
+      font-size: 9px;
+      margin-top: 20px;
+      color: var(--text-sub);
+      text-align: right;
+    }
+
+    /* ── SECTION SHELL ── */
+    .section {
+      padding: 100px 60px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      margin-bottom: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .label {
+      font-family: 'Syncopate', sans-serif;
+      font-size: 10px;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    /* ── PROJECT CARD (仿图3底部排版) ── */
+    .project-grid {
       display: grid;
-      grid-template-columns: 80px 1fr;
+      grid-template-columns: 1.5fr 1fr;
       gap: 30px;
     }
 
-    .log-number {
-      font-family: 'Syncopate', sans-serif;
-      font-size: 14px;
-      color: var(--border-color);
-      padding-top: 8px;
+    .video-wrapper {
+      background: var(--white);
+      padding: 10px;
+      border: 1px solid var(--border);
     }
 
-    .log-content h2 {
-      font-size: 1.8rem;
-      font-weight: 500;
-      margin-bottom: 20px;
-      letter-spacing: -0.5px;
-    }
+    .video-wrapper video { width: 100%; display: block; }
 
-    .tag-group {
+    .project-info {
       display: flex;
-      gap: 10px;
-      margin-bottom: 25px;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
     }
 
     .tag {
-      font-size: 11px;
-      padding: 2px 10px;
-      border: 1px solid var(--border-color);
-      border-radius: 100px;
+      font-size: 10px;
+      padding: 4px 12px;
+      background: var(--white);
+      border: 1px solid var(--border);
       text-transform: uppercase;
-      color: var(--text-sub);
+      border-radius: 100px;
     }
 
-    .log-description {
-      max-width: 600px;
-      font-size: 16px;
-      color: var(--text-main);
-      margin-bottom: 30px;
+    .btn-view {
+      margin-top: 30px;
+      display: inline-block;
+      padding: 15px 40px;
+      background: var(--text-main);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      width: fit-content;
+      transition: 0.3s;
     }
 
-    /* 图片处理 - 仿照图3的圆角与质感 */
-    .image-container {
-      width: 100%;
-      border-radius: 4px;
-      overflow: hidden;
-      background: #eee;
-    }
+    .btn-view:hover { background: var(--accent); transform: translateY(-3px); }
 
-    .image-container img {
-      width: 100%;
-      display: block;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .image-container:hover img {
-      transform: scale(1.02);
-    }
-
-    .img-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
+    /* ── FOOTER ── */
     footer {
-      grid-column: 1 / -1;
-      padding: 100px 0 40px;
-      border-top: 1px solid var(--border-color);
+      padding: 40px 60px;
       display: flex;
       justify-content: space-between;
-      font-size: 12px;
-      color: var(--text-sub);
+      font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 0.2em;
+      color: var(--text-sub);
     }
 
-    /* 手机端适配 */
-    @media (max-width: 900px) {
-      .wrapper { grid-template-columns: 1fr; padding: 40px 20px; }
-      aside { position: relative; top: 0; }
-      h1 { font-size: 3rem; }
-      .log-card { grid-template-columns: 1fr; gap: 10px; }
-      .log-number { font-size: 12px; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-content { border-right: none; padding: 60px 30px; }
+      .hero-image { height: 500px; }
+      .project-grid { grid-template-columns: 1fr; }
+      .section { padding: 60px 30px; }
     }
   </style>
 </head>
+
 <body>
 
-  <div class="wrapper">
-    <aside>
-      <div class="brand-id">Research & Develop</div>
-      <h1>UU<br>Robot</h1>
-      <div class="project-meta">
-        <div><strong>Type</strong> Biomimetic Robot</div>
-        <div><strong>Year</strong> 2026</div>
-        <div><strong>Phase</strong> Prototyping</div>
-        <div><strong>Tools</strong> Fusion 360 / ROS</div>
-      </div>
-    </aside>
-
-    <main class="log-stream">
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-meta">SJSU ISE // SYSTEM VER. 2026.04</span>
       
-      <article class="log-card">
-        <div class="log-number">01</div>
-        <div class="log-content">
-          <div class="tag-group">
-            <span class="tag">Kinematics</span>
+      <h1 class="hero-name">
+        MAX<br><em>IUNG</em>
+      </h1>
+
+      <div class="hero-footer">
+        <p class="hero-bio">
+          Exploring the synergy between <strong>Robotics</strong> and 
+          <strong>Human-Computer Interaction</strong>. Building the next generation 
+          of intuitive mechanical interfaces.
+        </p>
+        <nav class="nav-list">
+          <a href="projects.html" class="nav-item"><span>01. Projects</span><span>→</span></a>
+          <a href="learning.html" class="nav-item"><span>02. Learning</span><span>→</span></a>
+          <a href="academics.html" class="nav-item"><span>03. Academics</span><span>→</span></a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <div class="avatar-container">
+        <img src="avatar.jpg" alt="Maxiung">
+      </div>
+      <div class="coords">37.3382° N, 121.8863° W // SILICON VALLEY</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <div>
+        <span class="label">Featured Work</span>
+        <h2 class="section-title">UU Robot</h2>
+      </div>
+      <span class="hero-meta">In Progress / 2026</span>
+    </div>
+
+    <div class="project-grid">
+      <div class="video-wrapper">
+        <video autoplay muted loop playsinline>
+          <source src="video1.mov" type="video/mp4">
+        </video>
+      </div>
+      
+      <div class="project-info">
+        <div>
+          <p class="hero-bio">Biomimetic tendon-driven robot platform. Focused on human-like dexterity and expressive movement through high-DOF linkage systems.</p>
+          <div class="tag-cloud">
             <span class="tag">Fusion 360</span>
-          </div>
-          <h2>First Linkage Study</h2>
-          <p class="log-description">
-            First attempt at understanding mechanical linkage systems. Modeled a basic servo-driven two-bar linkage to study joint range of motion and force transmission.
-          </p>
-          <div class="image-container">
-            <img src="uu-r1.png" alt="Linkage Study">
+            <span class="tag">ESP32-C3</span>
+            <span class="tag">Kinematics</span>
           </div>
         </div>
-      </article>
+        <a href="personal-project.html" class="btn-view">View Case Study</a>
+      </div>
+    </div>
+  </section>
 
-      <article class="log-card">
-        <div class="log-number">02</div>
-        <div class="log-content">
-          <div class="tag-group">
-            <span class="tag">Anatomy</span>
-            <span class="tag">Modeling</span>
-          </div>
-          <h2>Joint Modeling Practice</h2>
-          <p class="log-description">
-            Dedicated sessions to building core Fusion 360 skills — practicing revolute joints and parametric modeling for the spine-like chain.
-          </p>
-          <div class="img-grid">
-            <div class="image-container"><img src="uu-r3.png" alt="Joint 1"></div>
-            <div class="image-container"><img src="uu-r4.png" alt="Joint 2"></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="log-card">
-        <div class="log-number">03</div>
-        <div class="log-content">
-          <div class="tag-group">
-            <span class="tag">Biomimetics</span>
-            <span class="tag">Design</span>
-          </div>
-          <h2>Gecko-Inspired Head</h2>
-          <p class="log-description">
-            Drawing from gecko facial geometry — wide-set eyes and an articulated jaw mechanism. Balancing expressiveness with structural integrity.
-          </p>
-          <div class="image-container">
-            <img src="uu-r6.png" alt="Head Model">
-          </div>
-        </div>
-      </article>
-
-      <article class="log-card">
-        <div class="log-number">04</div>
-        <div class="log-content">
-          <div class="tag-group">
-            <span class="tag">Assembly</span>
-            <span class="tag">Final Form</span>
-          </div>
-          <h2>Full Body Assembly</h2>
-          <p class="log-description">
-            First complete assembly bringing together the head, torso, and limb stubs. The grid-panel torso houses the main actuators.
-          </p>
-          <div class="image-container">
-            <img src="uu-r7.png" alt="Full Assembly">
-          </div>
-        </div>
-      </article>
-
-    </main>
-
-    <footer>
-      <span>© 2026 Maxiung Studio</span>
-      <span>Index / Projects / UU Robot</span>
-    </footer>
-  </div>
+  <footer>
+    <span>Maxiung Portfolio © 2026</span>
+    <span>Designed for Progress</span>
+  </footer>
 
 </body>
 </html>
