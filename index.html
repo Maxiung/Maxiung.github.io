@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Maxiung | SJSU ISE Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <title>Maxi | SJSU ISE Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --bg: #ffffff;
+      --section-bg: #f9f9f9; /* 区分中间区域的薄灰底 */
       --text: #1a1a1a;
-      --text-light: #666666;
+      --text-light: #606060;
       --accent: #3782DE;
       --line: #eeeeee;
-      --section-gap: 80px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,116 +27,132 @@
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 1050px;
       margin: 0 auto;
-      padding: 0 40px;
+      padding: 0 50px;
     }
 
     /* ── HEADER ── */
     header {
-      padding: 60px 0;
+      padding: 40px 0; /* 减小 padding 让内容上移 */
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--line);
     }
 
     .logo {
       font-weight: 600;
-      font-size: 20px;
-      letter-spacing: -0.5px;
+      font-size: 22px;
+      letter-spacing: -1px;
       text-decoration: none;
       color: var(--text);
+      font-family: 'Inter', sans-serif;
     }
 
     nav {
       display: flex;
-      gap: 30px;
+      gap: 35px;
     }
 
     nav a {
       text-decoration: none;
       color: var(--text-light);
       font-size: 14px;
+      font-weight: 400;
       transition: color 0.2s;
     }
 
     nav a:hover { color: var(--accent); }
 
-    /* ── INTRO (规范的学术简介布局) ── */
-    .intro-section {
-      padding: var(--section-gap) 0;
+    /* ── INTRO SECTION (带区分的中间块) ── */
+    .intro-block {
+      background-color: var(--section-bg);
+      border-radius: 20px;
+      padding: 50px; /* 内部留白 */
+      margin-top: 10px; /* 让整个块往上提 */
       display: grid;
-      grid-template-columns: 1fr 180px; /* 头像缩小并靠右 */
-      gap: 40px;
-      align-items: start;
+      grid-template-columns: 1fr 160px;
+      gap: 50px;
+      align-items: center;
+      border: 1px solid rgba(0,0,0,0.02); /* 极淡的边框增加精致感 */
     }
 
     .intro-text h1 {
-      font-size: 42px;
+      font-size: 38px;
       font-weight: 600;
-      margin-bottom: 20px;
-      line-height: 1.1;
+      margin-bottom: 18px;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
     }
 
     .intro-text p {
-      font-size: 17px;
+      font-size: 16px;
       color: var(--text-light);
-      max-width: 600px;
-      margin-bottom: 20px;
+      max-width: 580px;
+      margin-bottom: 24px;
     }
 
     .status-tag {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-family: 'JetBrains+Mono', monospace;
-      font-size: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
       color: var(--accent);
-      background: rgba(55, 130, 222, 0.05);
-      padding: 4px 12px;
-      border-radius: 4px;
+      margin-bottom: 15px;
+      letter-spacing: 0.5px;
+    }
+
+    .meta-info {
+      font-size: 13px;
+      color: #999;
+      display: flex;
+      gap: 20px;
     }
 
     .profile-img {
-      width: 180px;
-      height: 180px;
-      border-radius: 12px; /* 方中带圆，更现代 */
+      width: 160px;
+      height: 160px;
+      border-radius: 16px;
       object-fit: cover;
-      border: 1px solid var(--line);
+      background: #eee;
     }
 
-    /* ── PROJECTS (规范的列表/网格) ── */
-    .section-title {
-      font-size: 13px;
+    /* ── PROJECTS SECTION ── */
+    .projects-section {
+      padding: 70px 10px; /* 稍微向内缩一点，和灰色块对齐感更强 */
+    }
+
+    .section-label {
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-light);
-      margin-bottom: 30px;
+      letter-spacing: 1.5px;
+      color: #aaa;
+      margin-bottom: 40px;
       display: block;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 10px;
     }
 
     .project-item {
       display: grid;
-      grid-template-columns: 240px 1fr;
-      gap: 30px;
-      margin-bottom: 40px;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
       text-decoration: none;
       color: inherit;
+      transition: opacity 0.3s;
     }
+
+    .project-item:hover { opacity: 0.85; }
 
     .project-thumb {
       width: 100%;
-      aspect-ratio: 16/10;
-      background: #f9f9f9;
-      border-radius: 8px;
+      aspect-ratio: 1.5;
+      background: #f0f0f0;
+      border-radius: 12px;
       overflow: hidden;
-      border: 1px solid var(--line);
     }
 
-    .project-thumb img, .project-thumb video {
+    .project-thumb video, .project-thumb img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -144,40 +160,41 @@
 
     .project-info h3 {
       font-size: 20px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       font-weight: 600;
     }
 
     .project-info p {
       font-size: 15px;
       color: var(--text-light);
+      line-height: 1.5;
     }
 
-    .project-tags {
-      margin-top: 12px;
+    .tag-row {
+      margin-top: 15px;
       display: flex;
-      gap: 10px;
+      gap: 12px;
     }
 
     .tag {
-      font-family: 'JetBrains+Mono', monospace;
+      font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
-      color: #999;
+      color: #bbb;
     }
 
     /* ── FOOTER ── */
     footer {
-      padding: 60px 0;
+      padding: 50px 0;
       border-top: 1px solid var(--line);
       display: flex;
       justify-content: space-between;
-      color: #999;
-      font-size: 13px;
+      color: #bbb;
+      font-size: 12px;
     }
 
-    @media (max-width: 768px) {
-      .intro-section { grid-template-columns: 1fr; }
-      .profile-img { order: -1; width: 120px; height: 120px; }
+    @media (max-width: 850px) {
+      .intro-block { grid-template-columns: 1fr; padding: 40px; }
+      .profile-img { width: 100px; height: 100px; order: -1; }
       .project-item { grid-template-columns: 1fr; }
     }
   </style>
@@ -187,7 +204,7 @@
 
   <div class="container">
     <header>
-      <a href="#" class="logo">MAXIUNG</a>
+      <a href="#" class="logo">MAXI</a>
       <nav>
         <a href="#projects">Projects</a>
         <a href="#learning">Learning</a>
@@ -195,20 +212,24 @@
       </nav>
     </header>
 
-    <section class="intro-section">
+    <section class="intro-block">
       <div class="intro-text">
-        <div class="status-tag">● Currently at SJSU ISE 2029</div>
+        <div class="status-tag">/ CURRENTLY AT SJSU ISE 2029</div>
         <h1>Robotics, HCI & <br>Systemic Design.</h1>
         <p>
           I am a student researcher focusing on the synergy between intelligent mechanical systems and human interaction. My work explores how biomimetic design can create more intuitive robotic interfaces.
         </p>
-        <p style="font-size: 14px;">Silicon Valley, CA — maxiung.github.io</p>
+        <div class="meta-info">
+          <span>Silicon Valley, CA</span>
+          <span>•</span>
+          <span>maxiung.github.io</span>
+        </div>
       </div>
-      <img src="avatar.jpg" alt="Profile" class="profile-img">
+      <img src="avatar.jpg" alt="Maxi" class="profile-img">
     </section>
 
-    <section id="projects" style="padding-bottom: 60px;">
-      <span class="section-title">Selected Projects</span>
+    <section id="projects" class="projects-section">
+      <span class="section-label">Selected Projects</span>
       
       <a href="personal-project.html" class="project-item">
         <div class="project-thumb">
@@ -219,7 +240,7 @@
         <div class="project-info">
           <h3>UU Robot: Biomimetic Platform</h3>
           <p>A tendon-driven robotic system designed for expressive human-robot interaction. Utilizing Fusion 360 for mechanical kinematics and ESP32 for real-time control.</p>
-          <div class="project-tags">
+          <div class="tag-row">
             <span class="tag">#Kinematics</span>
             <span class="tag">#Embedded</span>
             <span class="tag">#HCI</span>
@@ -229,12 +250,12 @@
 
       <div class="project-item">
         <div class="project-thumb">
-          <img src="head1.jpeg" alt="Project 2">
+          <img src="head1.jpeg" alt="Linkage Study">
         </div>
         <div class="project-info">
           <h3>Kinematic Linkage Studies</h3>
-          <p>Exploring 4-bar linkage systems and their applications in bio-inspired joint mechanisms for enhanced mobility.</p>
-          <div class="project-tags">
+          <p>Exploring 4-bar linkage systems and their applications in bio-inspired joint mechanisms for enhanced mobility and energy efficiency.</p>
+          <div class="tag-row">
             <span class="tag">#Mechanism</span>
             <span class="tag">#CAD</span>
           </div>
@@ -243,8 +264,8 @@
     </section>
 
     <footer>
-      <span>© 2026 Maxiung. Built with precision.</span>
-      <span>SJSU // ISE Department</span>
+      <span>© 2026 MAXI. All rights reserved.</span>
+      <span>SJSU // Industrial and Systems Engineering</span>
     </footer>
   </div>
 
