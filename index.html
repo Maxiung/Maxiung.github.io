@@ -4,19 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Maxiung | SJSU ISE</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --accent:     #4475F2;
-      --accent-dim: rgba(68, 117, 242, 0.10);
-      --bg:         #090B12;
-      --panel:      #0F1120;
-      --border:     #1C1F33;
-      --border-hi:  #282C46;
-      --text:       #D8DCF0;
-      --sub:        #525878;
-      --green:      #2ECC71;
+      --accent:   #4475F2;
+      --bg:       #0A0C13;
+      --panel:    #0F1120;
+      --border:   #1C1F33;
+      --text:     #D8DCF0;
+      --sub:      #4A4E6A;
+      --green:    #2ECC71;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,327 +27,421 @@
       background-size: 48px 48px;
       color: var(--text);
       font-family: 'Inter', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       overflow-x: hidden;
     }
 
-    /* ── Layout ── */
-    .main-container {
-      width: 95%;
-      max-width: 1150px;
-      display: flex;
-      align-items: flex-start;
-      gap: 18px;
-    }
-
-    /* ── Left panel ── */
-    .glass-panel {
-      flex: 0 0 460px;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-
-    .panel-header {
-      padding: 11px 26px;
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 0;
       border-bottom: 1px solid var(--border);
+    }
+
+    .hero-left {
+      padding: 60px 64px;
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      align-items: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .hero-meta {
       font-family: 'Space Mono', monospace;
       font-size: 10px;
       color: var(--sub);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .status-dot::before {
-      content: '●';
-      color: var(--green);
-      font-size: 7px;
-      margin-right: 6px;
-      vertical-align: middle;
-    }
-
-    .profile-section {
-      padding: 36px 26px;
       display: flex;
       align-items: center;
-      gap: 22px;
-      border-bottom: 1px solid var(--border);
+      gap: 12px;
     }
 
-    .avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 3px;
-      overflow: hidden;
-      border: 1px solid var(--border-hi);
-      flex-shrink: 0;
+    .hero-meta::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
     }
 
-    .avatar img { width: 100%; height: 100%; object-fit: cover; }
-
-    .name-info h1 {
-      font-size: 2rem;
+    .hero-name {
+      font-size: clamp(4rem, 9vw, 8rem);
       font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 0.92;
       color: var(--text);
-      letter-spacing: -0.025em;
-      line-height: 1.1;
+      margin: auto 0;
     }
 
-    .name-info p {
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
+    .hero-name em {
+      font-style: italic;
+      font-weight: 300;
       color: var(--accent);
-      margin-top: 7px;
-      letter-spacing: 0.02em;
     }
 
-    .bio-content {
-      padding: 22px 26px 30px;
-      border-bottom: 1px solid var(--border);
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
     }
 
-    .bio-text {
-      font-size: 0.93rem;
+    .hero-bio {
+      font-size: 0.88rem;
       line-height: 1.75;
       color: var(--sub);
       font-weight: 300;
     }
 
-    .highlight {
+    .hero-bio strong {
       color: var(--text);
       font-weight: 500;
     }
 
-    /* ── Nav ── */
-    .nav-grid {
+    .hero-nav {
       display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
 
-    .nav-item {
-      flex: 1;
-      padding: 18px 8px;
-      text-align: center;
+    .hero-nav a {
+      display: flex;
+      align-items: center;
+      gap: 14px;
       text-decoration: none;
       color: var(--sub);
       font-family: 'Space Mono', monospace;
-      font-size: 10px;
+      font-size: 11px;
       letter-spacing: 0.04em;
-      transition: background 0.2s, color 0.2s;
-      border-right: 1px solid var(--border);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
     }
 
-    .nav-item:last-child { border-right: none; }
+    .hero-nav a:last-child { border-bottom: none; }
 
-    .nav-item:hover {
-      background: var(--accent-dim);
+    .hero-nav a:hover { color: var(--text); }
+
+    .hero-nav .n {
+      font-size: 10px;
       color: var(--accent);
+      min-width: 20px;
     }
 
-    .nav-num {
-      display: block;
-      font-size: 13px;
-      color: var(--accent);
-      margin-bottom: 5px;
+    .hero-nav .arrow {
+      margin-left: auto;
+      opacity: 0;
+      transition: opacity 0.2s;
     }
 
-    /* ── Right column ── */
-    .featured-right {
+    .hero-nav a:hover .arrow { opacity: 1; }
+
+    /* right side of hero */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .avatar-wrap {
       flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      min-width: 0;
-      align-content: start;
-    }
-
-    .featured-card {
-      display: block;
-      text-decoration: none;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 6px;
       overflow: hidden;
-      transition: border-color 0.25s, transform 0.25s;
+      border-bottom: 1px solid var(--border);
     }
 
-    .featured-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .featured-card video {
+    .avatar-wrap img {
       width: 100%;
-      display: block;
-      aspect-ratio: 1 / 1;
+      height: 100%;
       object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(20%);
     }
 
-    .featured-card-body {
-      padding: 10px 14px;
-      border-top: 1px solid var(--border);
+    .hero-coords {
+      padding: 16px 20px;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: var(--sub);
+      letter-spacing: 0.06em;
     }
 
-    .featured-label {
+    /* ── SECTION SHELL ── */
+    .section {
+      border-bottom: 1px solid var(--border);
+      padding: 64px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label {
       font-family: 'Space Mono', monospace;
       font-size: 9px;
       color: var(--accent);
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 3px;
+      letter-spacing: 0.1em;
     }
 
-    .featured-title {
+    .section-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--sub);
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
       font-family: 'Space Mono', monospace;
       font-size: 10px;
-      font-weight: 700;
-      color: var(--text);
+      color: var(--sub);
+      letter-spacing: 0.05em;
     }
 
-    .head-card {
-      border-radius: 6px;
+    /* ── FEATURED PROJECT ── */
+    .project-media {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .media-block {
       overflow: hidden;
       border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--panel);
     }
 
-    .head-card img {
+    .media-block video,
+    .media-block img {
       width: 100%;
+      height: 100%;
       display: block;
-      aspect-ratio: 1 / 1;
       object-fit: cover;
     }
 
-    .note-item {
+    .media-block.video-block {
+      aspect-ratio: 16 / 10;
+    }
+
+    .media-block.image-block {
+      /* natural proportions — no forced ratio */
+    }
+
+    .media-block.image-block img {
+      height: auto;
+    }
+
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: var(--sub);
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+
+    .view-link {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+
+    .view-link:hover { opacity: 0.7; }
+
+    /* ── QUICK LINKS ── */
+    .links-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 26px;
       background: var(--panel);
       border: 1px solid var(--border);
-      border-left: 3px solid var(--accent);
-      border-radius: 6px;
-      padding: 13px 15px;
+      border-radius: 4px;
       text-decoration: none;
       color: var(--sub);
       font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.03em;
+      font-size: 11px;
+      letter-spacing: 0.05em;
       transition: all 0.2s;
-      display: flex;
-      align-items: center;
     }
 
-    .note-item:hover {
-      background: var(--accent-dim);
-      color: var(--accent);
+    .link-card:hover {
       border-color: var(--accent);
+      color: var(--text);
     }
 
-    /* ── Footer ── */
+    .link-card .link-arrow {
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    /* ── FOOTER ── */
     footer {
-      margin-top: 26px;
+      padding: 24px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       font-family: 'Space Mono', monospace;
-      font-size: 10px;
+      font-size: 9px;
       color: var(--sub);
       letter-spacing: 0.06em;
-      opacity: 0.7;
     }
 
-    /* ── Responsive ── */
-    @media (max-width: 1100px) {
-      .main-container { flex-direction: column; align-items: stretch; }
-      .glass-panel { flex: none; width: 100%; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 40px 32px; border-right: none; }
+      .hero-right { height: 340px; }
+      .hero-bottom { grid-template-columns: 1fr; gap: 28px; }
+      .section { padding: 44px 32px; }
+      .project-media { grid-template-columns: 1fr; }
+      footer { padding: 20px 32px; flex-direction: column; gap: 8px; text-align: center; }
     }
 
-    @media (max-width: 768px) {
-      .profile-section { padding: 28px 20px; gap: 18px; }
-      .bio-content { padding: 18px 20px 26px; }
-      .name-info h1 { font-size: 1.75rem; }
-      .nav-item { padding: 16px 6px; font-size: 9px; }
-    }
-
-    @media (max-width: 540px) {
-      .featured-right { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 480px) {
-      body { justify-content: flex-start; padding: 20px 0 30px; }
-      .panel-header { padding: 10px 16px; }
-      .profile-section { flex-direction: column; align-items: flex-start; padding: 20px 18px; }
-      .avatar { width: 64px; height: 64px; }
-      .name-info h1 { font-size: 1.5rem; }
-      .bio-content { padding: 16px 18px 22px; }
-      .bio-text { font-size: 0.88rem; }
-      .nav-item { padding: 14px 4px; font-size: 9px; }
-      footer { text-align: center; }
+    @media (max-width: 600px) {
+      .hero-left { padding: 28px 20px; }
+      .hero-name { font-size: 3.5rem; }
+      .section { padding: 36px 20px; }
+      .links-grid { grid-template-columns: 1fr; }
+      footer { padding: 16px 20px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="main-container">
-    <div class="glass-panel">
-      <div class="panel-header">
-        <span>SJSU // ISE 2029</span>
-        <span class="status-dot">SYSTEM ONLINE</span>
-      </div>
 
-      <section class="profile-section">
-        <div class="avatar">
-          <img src="avatar.jpg" alt="Maxiung">
-        </div>
-        <div class="name-info">
-          <h1>Maxiung</h1>
-          <p>Robotics &amp; HCI Enthusiast</p>
-        </div>
-      </section>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-meta">SJSU &nbsp;//&nbsp; ISE 2029 &nbsp;//&nbsp; SYSTEM ONLINE</div>
 
-      <section class="bio-content">
-        <p class="bio-text">
-          Exploring the synergy between <span class="highlight">Robotics</span> and
-          <span class="highlight">Human-Computer Interaction</span>.
+      <h1 class="hero-name">Max<br><em>iung</em></h1>
+
+      <div class="hero-bottom">
+        <p class="hero-bio">
+          Exploring the synergy between <strong>Robotics</strong> and
+          <strong>Human-Computer Interaction</strong>.
           Dedicated to building intuitive interfaces for intelligent mechanical systems.
         </p>
-      </section>
-
-      <nav class="nav-grid">
-        <a href="projects.html" class="nav-item">
-          <span class="nav-num">01</span>PROJECTS
-        </a>
-        <a href="learning.html" class="nav-item">
-          <span class="nav-num">02</span>LEARNING
-        </a>
-        <a href="academics.html" class="nav-item">
-          <span class="nav-num">03</span>ACADEMICS
-        </a>
-      </nav>
+        <nav class="hero-nav">
+          <a href="projects.html">
+            <span class="n">01</span> PROJECTS <span class="arrow">→</span>
+          </a>
+          <a href="learning.html">
+            <span class="n">02</span> LEARNING <span class="arrow">→</span>
+          </a>
+          <a href="academics.html">
+            <span class="n">03</span> ACADEMICS <span class="arrow">→</span>
+          </a>
+        </nav>
+      </div>
     </div>
 
-    <aside class="featured-right">
-      <a href="personal-project.html" class="featured-card">
+    <div class="hero-right">
+      <div class="avatar-wrap">
+        <img src="avatar.jpg" alt="Maxiung">
+      </div>
+      <div class="hero-coords">37.3382° N, 121.8863° W</div>
+    </div>
+  </section>
+
+  <!-- FEATURED PROJECT -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-label">Personal Project — Featured</div>
+        <h2 class="section-title">UU Robot</h2>
+        <div class="section-sub">BIOMIMETIC · TENDON-DRIVEN · IN PROGRESS</div>
+      </div>
+      <div class="section-num">— 01</div>
+    </div>
+
+    <div class="project-media">
+      <div class="media-block video-block">
         <video autoplay muted loop playsinline>
           <source src="video1.mov" type="video/quicktime">
           <source src="video1.mov" type="video/mp4">
         </video>
-        <div class="featured-card-body">
-          <div class="featured-label">Personal Project</div>
-          <div class="featured-title">UU ROBOT — IN PROGRESS</div>
-        </div>
-      </a>
-
-      <div class="head-card">
+      </div>
+      <div class="media-block image-block">
         <img src="head1.jpeg" alt="UU Robot Head Model">
       </div>
+    </div>
 
-      <a href="self-learning.html" class="note-item">➜ SELF LEARNING</a>
-      <a href="conclusion.html" class="note-item">➜ MONTH CONCLUSION</a>
-    </aside>
+    <div class="project-footer">
+      <div class="tag-row">
+        <span class="tag">Fusion 360</span>
+        <span class="tag">ESP32-C3</span>
+        <span class="tag">Kinematics</span>
+        <span class="tag">Tendon-driven</span>
+      </div>
+      <a href="personal-project.html" class="view-link">View Project →</a>
+    </div>
   </div>
 
-  <footer>37.3382° N, 121.8863° W // SILICON VALLEY</footer>
+  <!-- QUICK LINKS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-label">More</div>
+      <div class="section-num">— 02</div>
+    </div>
+    <div class="links-grid">
+      <a href="self-learning.html" class="link-card">
+        SELF LEARNING <span class="link-arrow">→</span>
+      </a>
+      <a href="conclusion.html" class="link-card">
+        MONTH CONCLUSION <span class="link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <span>MAXIUNG // 2026</span>
+    <span>SILICON VALLEY</span>
+  </footer>
+
 </body>
 </html>
